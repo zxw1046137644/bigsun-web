@@ -1,13 +1,17 @@
 import Result from '../pages/result.vue'
- // import Index from '../App.vue'
- import Page from '../pages/page.vue'
+// import Index from '../App.vue'
+import Page from '../pages/page.vue'
 
 
 export default [
     {
         path: '/',
         name: 'Page',
-        component: Page
+        components: {
+            default: Page,
+            middle: Page,
+            footer: Page
+        }
     },
     {
         path: '/result',

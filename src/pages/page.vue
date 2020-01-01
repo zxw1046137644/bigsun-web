@@ -1,5 +1,5 @@
 <template>
-    <div>//成功数，失败数，总数，正在执行，待执行，执行通过
+    <div class="page">//成功数，失败数，总数，正在执行，待执行，执行通过
         <el-table
                 :data="tableData"
                 style="width: 100%;margin-bottom: 20px;"
@@ -60,8 +60,6 @@
 </template>
 
 <script>
-    // eslint-disable-next-line no-unused-vars
-    import router from "../js/router";
 
     export default {
         name: 'page',
@@ -81,17 +79,18 @@
         },
         methods: {
             findResult() {
-                // eslint-disable-next-line no-undef
+
                 this.$router.push('result');
             },
             fullscreenLoading() {
-                // eslint-disable-next-line no-undef
+
             }
         }
     }
 </script>
 
 
-<style scoped>
+<style scoped type="scss">
+
 
 </style>
