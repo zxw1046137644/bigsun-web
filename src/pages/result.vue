@@ -2,7 +2,6 @@
     <div>//成功数，失败数，总数，成功比例
         <el-table
                 :data="tableData"
-                v-loading="loading"
                 style="width: 100%;margin-bottom: 20px;"
                 row-key="id"
                 border

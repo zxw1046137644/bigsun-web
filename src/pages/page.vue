@@ -50,7 +50,8 @@
                     :resizable="false"
                     align="center">
                 <template>
-                    <p @click="findResult" v-loading.fullscreen.lock="fullscreenLoading">详细数据</p>
+                    <p @click="findResult">详细数据</p>
+<!--                    <p @click="findResult" v-loading.fullscreen.lock="fullscreenLoading">详细数据</p>-->
                 </template>
             </el-table-column>
         </el-table>
@@ -79,12 +80,26 @@
         },
         methods: {
             findResult() {
-
                 this.$router.push('result');
+                this.axios.get(
+                    'http://121.199.14.154:8080/user/world',
+                )
+                    .then
+                    (
+                        (res) => {
+                            console.log(res)
+                        }
+                    )
+                    .catch
+                    (
+                        (err) => {
+                            console.log(err)
+                        }
+                    )
             },
-            fullscreenLoading() {
-
-            }
+            // fullscreenLoading() {
+            //
+            // }
         }
     }
 </script>
