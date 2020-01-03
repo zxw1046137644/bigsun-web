@@ -1,5 +1,5 @@
 import Result from '../pages/result.vue'
-// import Index from '../App.vue'
+
 import Page from '../pages/page.vue'
 
 

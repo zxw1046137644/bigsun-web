@@ -51,16 +51,20 @@
                     align="center">
             </el-table-column>
         </el-table>
-
+        <paging></paging>
 
     </div>
 </template>
 
 <script>
+    import Paging from "../components/paging";
+
     export default {
         name: 'result',
-        props: {
-
+        components: {Paging},
+        props: {},
+        comments: {
+            Paging
         },
         data() {
             return {
