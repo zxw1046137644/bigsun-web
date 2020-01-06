@@ -1,6 +1,6 @@
-import Result from '../pages/ApiResult.vue'
+import Result from '../pages/apiResult/ApiResult.vue'
 
-import Page from '../pages/ApiList.vue'
+import Page from '../pages/apiList/ApiList.vue'
 
 
 export default [
