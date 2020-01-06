@@ -1,5 +1,5 @@
 <template>
-    <div class="page">//成功数，失败数，总数，正在执行，待执行，执行通过
+    <div class="page">
         <el-table
                 :data="tableData"
                 style="width: 100%;margin-bottom: 20px;"
@@ -49,23 +49,29 @@
                     width="100"
                     :resizable="false"
                     align="center">
-                <template>
-                    <p @click="findResult">详细数据</p>
-<!--                    <p @click="findResult" v-loading.fullscreen.lock="fullscreenLoading">详细数据</p>-->
-                </template>
+
+                <p @click="findResult" class="page-p">详细数据</p>
+                <!--                    <p @click="findResult" v-loading.fullscreen.lock="fullscreenLoading">详细数据</p>-->
+
             </el-table-column>
         </el-table>
-
-
+        <div class="paging">
+<!--            <el-button size="small" @click="handBack">返回接口统计</el-button>-->
+            <paging></paging>
+        </div>
     </div>
 </template>
 
 <script>
+    import Paging from "../components/Paging";
 
     export default {
         name: 'page',
         props: {
             msg: String
+        },
+        components: {
+            Paging
         },
         data() {
             return {
@@ -105,7 +111,17 @@
 </script>
 
 
-<style scoped type="scss">
+<style scoped type="text/css" lang="scss">
+    @import "./src/css/api";
 
+    .page-p {
+        cursor: pointer;
+    }
+
+    .page {
+        p:hover {
+            opacity: 0.6;
+        }
+    }
 
 </style>

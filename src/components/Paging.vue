@@ -1,20 +1,21 @@
 <template>
-    <div class="block">
+    <div class="paging">
         <el-pagination
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
-                :current-page.sync="currentPage3"
-                :page-size="100"
+                :current-page.sync="currentPage"
+                :page-size="page_size"
+                hide-on-single-page="true"
                 layout="prev, pager, next, jumper"
-                :total="1000">
+                :total="total" class="inline">
         </el-pagination>
-        <el-button size="small" @click="back">返回上页</el-button>
+
     </div>
 </template>
 
 <script>
     export default {
-        name: "paging",
+        name: "Paging",
         methods: {
             handleSizeChange(val) {
 
@@ -22,22 +23,23 @@
             handleCurrentChange(val) {
 
             },
-            back() {
-                this.$router.back();
-            }
+
 
         },
         data() {
             return {
-                currentPage3: 5,
+                currentPage: 1,
+                total:100,
+                page_size:10
             };
         }
 
     }
 </script>
 
-<style scoped type="scss">
-    .block {
-        display: inline;
-    }
+<style scoped type="text/css" lang="scss">
+
+
+
+
 </style>
