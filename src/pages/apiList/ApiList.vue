@@ -56,7 +56,7 @@
             </el-table-column>
         </el-table>
         <div class="paging">
-<!--            <el-button size="small" @click="handBack">返回接口统计</el-button>-->
+            <!--            <el-button size="small" @click="handBack">返回接口统计</el-button>-->
             <paging></paging>
         </div>
     </div>
@@ -81,23 +81,34 @@
                     name: '王小虎',
                     address: '上海市普陀区金沙江路 1518 弄'
                 }],
-                fullscreenLoading: false
+                fullscreenLoading: false,
+                data: {}
             }
+        },
+        mounted() {
+            this.axios.get('/api/apiAuto/uu',)
+                .then(
+                    (res) => {
+                        console.log(res)
+                    }
+                )
+                .catch(
+                    (err) => {
+                        console.log(err)
+                    }
+                )
+
         },
         methods: {
             findResult() {
                 this.$router.push('result');
-                this.axios.get(
-                    '/api/user/world',
-                )
-                    .then
-                    (
+                this.axios.get('/api/apiAuto/result',)
+                    .then(
                         (res) => {
                             console.log(res)
                         }
                     )
-                    .catch
-                    (
+                    .catch(
                         (err) => {
                             console.log(err)
                         }
