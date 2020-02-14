@@ -70,7 +70,10 @@
 
     export default {
         name: 'result',
-        components: {Keyvalue, Paging},
+        components: {
+            Keyvalue,
+            Paging
+        },
         props: {},
         methods: {
             handBack() {

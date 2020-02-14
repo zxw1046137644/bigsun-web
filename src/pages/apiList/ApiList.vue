@@ -59,6 +59,7 @@
             <!--            <el-button size="small" @click="handBack">返回接口统计</el-button>-->
             <paging></paging>
         </div>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -66,7 +67,7 @@
     import Paging from "../../components/Paging";
 
     export default {
-        name: 'page',
+        name: 'ApiList',
         props: {
             msg: String
         },

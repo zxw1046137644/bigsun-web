@@ -16,7 +16,7 @@ Vue.use(VueAxios,axios)
 
 
 const router = new VueRouter({
-    // mode:'history',//去掉链接中/# 线上需要后端配置
+    mode:'history',//去掉链接中/# 线上需要后端配置
     routes
 });
 

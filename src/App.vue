@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <canvas class="canvas"></canvas>
         <router-view></router-view>
         <!--    <router-view name="middle"></router-view>-->
         <!--    <router-view name="footer"></router-view>-->
@@ -15,12 +16,28 @@
     }
 </script>
 
-<style>
+<style lang="scss">
     #app {
-
-        margin: 20px;
         /*font-size: 50px;*/
-        margin-top: 8%;
-
+        /*background-color:cornsilk;*/
+    canvas {
+        width: 100%;
+        height: auto /*默认全屏显示 可自己设置高度640px*/;
+        display: inline-block;
+        vertical-align: baseline;
+        position: absolute;
+        z-index: -1;
+    }
+    .canvas {
+        width: 100%;
+        height: 100%;
+        /*background: url(./assets/bg.jpg);*/
+        background:rgb(9,7,35);
+        position: absolute;
+        filter: alpha(opacity=40);
+        -moz-opacity: 0.4;
+        -khtml-opacity: 0.4;
+        opacity: 0.6;
+    }
     }
 </style>

@@ -1,8 +1,9 @@
 import Result from '../pages/apiResult/ApiResult.vue'
-import Page from '../pages/apiList/ApiList.vue'
+import ApiList from '../pages/apiList/ApiList.vue'
 import Index from '../components/index/index'
 import Child1 from '../pages/child/child1'
 import Child2 from '../pages/child/child2'
+import InterfacePage from '../components/interface/interface'
 
 export default [
     {
@@ -13,11 +14,23 @@ export default [
         path: '/index',
         name: 'index',
         component: Index,
+
+    },
+    {
+        path: '/result',
+        name: 'result',
+        component: Result
+    },
+
+    {
+        path: '/apiPage',
+        name: 'interfacePage',
+        component: InterfacePage,
         children:[
             {
-                path: '',
-                name: 'child1',
-                redirect:'child2'
+                path: 'apiList',
+                name: 'ApiList',
+                component: ApiList
             },
             {
                 path: 'child1',
@@ -30,16 +43,6 @@ export default [
                 component: Child2
             },
         ]
-    },
-    {
-        path: '/result',
-        name: 'result',
-        component: Result
-    },
-    {
-        path: '/page',
-        name: 'Page',
-        component: Page
     }
 ]
 
