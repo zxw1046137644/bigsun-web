@@ -1,8 +1,7 @@
 <template>
     <div>
         <Head></Head>
-            <Warp>
-            </Warp>
+            <Warp></Warp>
             <div>
                 <keep-alive>
                     <router-view></router-view>
