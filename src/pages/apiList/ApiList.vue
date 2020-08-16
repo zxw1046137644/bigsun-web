@@ -65,6 +65,7 @@
 
 <script>
     import Paging from "../../components/Paging";
+    // import g from "./apiList";
 
     export default {
         name: 'ApiList',
@@ -76,6 +77,7 @@
         },
         data() {
             return {
+                g: g,
                 tableData: [{
                     id: 1,
                     date: '2016-05-02',
@@ -87,6 +89,7 @@
             }
         },
         mounted() {
+            console.log(this)
             this.axios.get('/api/apiAuto/uu',)
                 .then(
                     (res) => {
@@ -103,21 +106,9 @@
         methods: {
             findResult() {
                 this.$router.push('result');
-                this.axios.get('/api/apiAuto/result',)
-                    .then(
-                        (res) => {
-                            console.log(res)
-                        }
-                    )
-                    .catch(
-                        (err) => {
-                            console.log(err)
-                        }
-                    )
+                console.log(this)
             },
-            // fullscreenLoading() {
-            //
-            // }
+
         }
     }
 </script>

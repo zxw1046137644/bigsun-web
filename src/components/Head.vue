@@ -2,28 +2,17 @@
     <div class="head">
         <div class="logo">
             <img src="">
-            <span>BeLife</span>
+            <span>BeLife3</span>
         </div>
         <div class="nav" v-bind="inApi">
             <ul>
-                <li>大阳</li>
-                <li>大阳</li>
-                <li>大阳</li>
-                <li>大阳</li>
-                <li>大阳</li>
-                <li>大阳</li>
+                <li>回首页</li>
                 <li @click="inApi">接口工具</li>
             </ul>
         </div>
         <div class="menu">
             <ul>
-                <li>
-                    <div>
-                        <img src="../assets/me1.png">
-                    </div>
-                </li>
-                <li></li>
-                <li></li>
+                <li>登录</li>
             </ul>
         </div>
     </div>
@@ -43,17 +32,22 @@
 </script>
 
 <style lang="scss" scoped>
+    /*
+
+     */
     .head {
-        min-width: 55.5rem;
-        height: 3.4rem;
-        margin: 0 auto;
+        width: 100%;
+        /*margin: 0 auto;*/
         line-height: 3.8rem;
-        display: table;
+        display: flex;
         font-size: 1rem;
         color: rgba(255, 255, 255, .5);
+        justify-content: space-around;
+        background-color: black;
+        opacity: 0.5;
 
         .logo {
-            margin-right: 4.5rem;
+
         }
 
         .nav {
@@ -61,17 +55,16 @@
         }
 
         .menu {
-            float: right;
-            margin-top: 0.6rem;
-            img{
-                width: 1.7rem;
+            img {
+                width: 1.9rem;
                 height: 1.7rem;
             }
         }
 
-        div {
-            display: inline-block;
-        }
+
+        /*div {*/
+        /*    display: inline;*/
+        /*}*/
 
         li:hover {
             color: white;

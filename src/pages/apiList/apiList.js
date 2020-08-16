@@ -1,23 +1,17 @@
-module.exports = {
-
-    findResult() {
-        this.$router.push('result');
-        this.axios.get(
-            '/api/user/world',
+export function getWorld() {
+    this.axios.get(
+        '/api/user/world',
+    )
+        .then
+        (
+            (res) => {
+                console.log(res)
+            }
         )
-            .then
-            (
-                (res) => {
-                    console.log(res)
-                }
-            )
-            .catch
-            (
-                (err) => {
-                    console.log(err)
-                }
-            )
-    },
-
-
+        .catch
+        (
+            (err) => {
+                console.log(err)
+            }
+        )
 }

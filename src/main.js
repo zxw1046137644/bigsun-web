@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
+import Vuex from  'vuex';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import '../public/css/base.scss';
@@ -11,12 +12,13 @@ import VueAxios from 'vue-axios'
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(VueRouter)
+Vue.use(Vuex)
 // Vue.prototype.$http = axios
 Vue.use(VueAxios,axios)
 
 
 const router = new VueRouter({
-    mode:'history',//去掉链接中/# 线上需要后端配置test
+    // mode:'history',//去掉链接中/# 线上需要后端配置test
     routes
 });
 
