@@ -90,7 +90,7 @@
         },
         mounted() {
             console.log(this)
-            this.axios.get('/api/apiAuto/uu',)
+            this.axios.get('/api/bigsun/hello',)
                 .then(
                     (res) => {
                         console.log(res)

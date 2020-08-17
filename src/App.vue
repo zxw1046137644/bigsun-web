@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <canvas v-bind:class="['canvas1',isnight?'night':'']"></canvas>
+        <canvas v-bind:class="['canvas1',isNight?'night':'']"></canvas>
         <router-view></router-view>
         <!--    <router-view name="middle"></router-view>-->
         <!--    <router-view name="footer"></router-view>-->
@@ -16,7 +16,7 @@
         name: 'app',
         components: {},
         data: {
-            isnight: '',
+            isNight: '',
         },
         created() {
             this.getNowTime();
@@ -25,9 +25,9 @@
             getNowTime() {
                 var time = new Date().getHours();
                 if (time >= 6 && time <= 18) {
-                    this.isnight = false;
+                    this.isNight = false;
                 } else {
-                    this.isnight = true;
+                    this.isNight = true;
                 }
             }
         }
@@ -40,8 +40,8 @@
     #app {
         /*font-size: 50px;*/
         /*background-color:cornsilk;*/
-        height: 100%;
-        overflow-y: scroll;
+        //height: 100%;
+        //overflow-y: scroll;
 
         canvas {
             width: 100%;
