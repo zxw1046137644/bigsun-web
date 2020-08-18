@@ -2,7 +2,7 @@
     <div class="head">
         <div class="logo">
             <img src="">
-            <span>BeLife3</span>
+            <span>bebebe</span>
         </div>
         <div class="nav" v-bind="inApi">
             <ul>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import router from "../js/router";
+    import router from "../../js/router";
 
     export default {
         name: "Head",
@@ -36,15 +36,19 @@
 
      */
     .head {
+        /*position: fixed;*/
+        top: 0;
+        left: 0;
+        box-shadow: 0 2px 10px wheat;
         width: 100%;
         /*margin: 0 auto;*/
         line-height: 3.8rem;
         display: flex;
         font-size: 1rem;
-        color: rgba(255, 255, 255, .5);
+        background-color: salmon;
         justify-content: space-around;
-        background-color: black;
-        opacity: 0.5;
+
+        /*opacity: 0.5;*/
 
         .logo {
 

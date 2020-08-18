@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <canvas v-bind:class="['canvas1',isNight?'night':'']"></canvas>
+<!--        <canvas v-bind:class="['canvas1',isNight?'night':'']"></canvas>-->
         <router-view></router-view>
         <!--    <router-view name="middle"></router-view>-->
         <!--    <router-view name="footer"></router-view>-->
@@ -35,18 +35,17 @@
 </script>
 
 <style lang="scss" scoped>
-
-
+    html,body,#app{
+        height: 100%;
+    }
     #app {
         /*font-size: 50px;*/
         /*background-color:cornsilk;*/
-        //height: 100%;
         //overflow-y: scroll;
-
+        background-color: wheat;
         canvas {
             width: 100%;
             height: 100%; /*默认全屏显示 可自己设置高度640px*/
-        ;
             display: inline-block;
             vertical-align: baseline;
             position: absolute;

@@ -1,20 +1,28 @@
-import Result from '../pages/apiResult/ApiResult.vue'
-import ApiList from '../pages/apiList/ApiList.vue'
+import Result from '../components/api_auto_demo/apiResult/ApiResult.vue'
+import ApiList from '../components/api_auto_demo/apiList/ApiList.vue'
 import Index from '../components/index/index'
-import Child1 from '../pages/child/child1'
-import Child2 from '../pages/child/child2'
-import InterfacePage from '../components/interface/interface'
+import Child1 from '../components/api_auto_demo/child/child1'
+import Child2 from '../components/api_auto_demo/child/child2'
+import InterfacePage from '../components/index_demo/face'
+import Index_demo from '../components/index_demo/index_demo'
 
 export default [
+    //重定向进入到index
     {
         path: '/',
-        redirect: '/index'//重定向
+        redirect: '/index'
     },
     {
         path: '/index',
         name: 'index',
         component: Index,
 
+    },
+    //首页demo的路由
+    {
+        path: '/index_demo',
+        name: 'index_demo',
+        component: Index_demo,
     },
     {
         path: '/result',

@@ -64,7 +64,7 @@
 </template>
 
 <script>
-    import Paging from "../../components/Paging";
+    import Paging from "../../Paging";
     // import g from "./apiList";
 
     export default {

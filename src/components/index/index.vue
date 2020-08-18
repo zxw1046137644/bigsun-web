@@ -1,28 +1,22 @@
 <template>
-    <div>
-        <Head></Head>
-            <Warp></Warp>
-            <div>
-                <keep-alive>
-                    <router-view></router-view>
-                </keep-alive>
-            </div>
+    <div class="index-class">
+        <Side> </Side>
     </div>
 </template>
 
 <script>
-    import Head from "../Head"
-    import Warp from "../Warp"
+    import Side from "../Side"
 
     export default {
         name: "index",
         components: {
-            Head,
-            Warp
+            Side
         }
     }
 </script>
 
-<style scoped>
-
+<style scoped type="text/css" lang="scss">
+    .index-class {
+     /*min-height: 60rem;*/
+    }
 </style>

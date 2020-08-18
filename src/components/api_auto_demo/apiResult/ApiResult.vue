@@ -64,14 +64,12 @@
 </template>
 
 <script>
-    import Paging from "../../components/Paging";
-    import Keyvalue from "../../components/KeyValue";
+    import Paging from "../../Paging";
 
 
     export default {
         name: 'result',
         components: {
-            Keyvalue,
             Paging
         },
         props: {},

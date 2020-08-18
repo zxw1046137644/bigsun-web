@@ -100,7 +100,7 @@
 
 <style lang="scss" scoped>
     .warp {
-        margin-top: 3.2rem;
+
 
         .img {
             text-align: center;
