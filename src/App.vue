@@ -1,25 +1,28 @@
 <template>
     <div id="app">
-<!--        <canvas v-bind:class="['canvas1',isNight?'night':'']"></canvas>-->
+        <!--        <canvas v-bind:class="['canvas1',isNight?'night':'']"></canvas>-->
         <router-view></router-view>
         <!--    <router-view name="middle"></router-view>-->
         <!--    <router-view name="footer"></router-view>-->
-
+        <Plan></Plan>
     </div>
 
 </template>
 
 <script>
-
+    import Plan from './components/Plan'
 
     export default {
         name: 'app',
-        components: {},
+        components: {
+            Plan
+        },
         data: {
             isNight: '',
         },
         created() {
             this.getNowTime();
+          
         },
         methods: {
             getNowTime() {
@@ -35,14 +38,14 @@
 </script>
 
 <style lang="scss" scoped>
-    html,body,#app{
+    html, body, #app {
         height: 100%;
     }
+
     #app {
         /*font-size: 50px;*/
         /*background-color:cornsilk;*/
         //overflow-y: scroll;
-        background-color: wheat;
         canvas {
             width: 100%;
             height: 100%; /*默认全屏显示 可自己设置高度640px*/

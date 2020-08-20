@@ -1,6 +1,11 @@
 <template>
     <div class="index-class">
-        <Side> </Side>
+        <div class="index-left">
+            <Side></Side>
+        </div>
+        <router-view></router-view>
+
+
     </div>
 </template>
 
@@ -17,6 +22,9 @@
 
 <style scoped type="text/css" lang="scss">
     .index-class {
-     /*min-height: 60rem;*/
+        /*min-height: 60rem;*/
+        .index-left{
+
+        }
     }
 </style>
