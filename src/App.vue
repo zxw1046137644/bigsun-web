@@ -22,7 +22,7 @@
         },
         created() {
             this.getNowTime();
-          
+
         },
         methods: {
             getNowTime() {
