@@ -6,19 +6,20 @@ import 'element-ui/lib/theme-chalk/index.css';
 import '../public/css/base.scss';
 import VueRouter from 'vue-router';
 import routes from './js/router';
-import axios from 'axios'
-import VueAxios from 'vue-axios'
+import axios from 'axios';
+import g from './js/gloabls';
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(VueRouter)
 Vue.use(Vuex)
-// Vue.prototype.$http = axios
-Vue.use(VueAxios,axios)
+Vue.use(axios)
+Vue.prototype.$http = axios
 
 
+Vue.prototype.$getHistoryLength = g.w.getHistoryLength();
 const router = new VueRouter({
-    // mode:'history',//去掉链接中/# 线上需要后端配置test
+    mode:'history',//去掉链接中/# 线上需要后端配置test
     routes
 });
 

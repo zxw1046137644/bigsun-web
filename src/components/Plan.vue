@@ -1,7 +1,7 @@
 <template>
     <div class="back">
         <el-row>
-            <el-button type="info" icon="el-icon-arrow-left" circle @click="forward"></el-button>
+            <el-button type="info" plain icon="el-icon-arrow-left" circle @click="forward"></el-button>
             <el-button type="warning" icon="el-icon-arrow-right" circle @click="back"></el-button>
         </el-row>
     </div>
@@ -11,20 +11,28 @@
     export default {
         name: "Plan",
         data() {
-            return {}
+            return {
+                tipMessage:['别点了到底了','呱呱呱','阿巴']
+            }
         },
         methods: {
-            forward (){
-
+            forward() {
 
                 this.$router.go(-1);
 
+                let pathname = location.pathname;
+                if (pathname == '/index') {
+                    this.$notify({
+                        title: this.tipMessage[Math.floor(Math.random() * (4 - 1))],
+                        message: '这是一个提示',
+                        type: 'warning',
+                        duration: 1000
+                    })
+                }
             },
-            back (){
+            back() {
                 this.$router.go(1);
-                let length = window.history.length
-                console.log(length)
-            }
+            },
         }
     }
 </script>
@@ -36,9 +44,11 @@
         position: fixed;
         bottom: 3rem;
         right: 2rem;
+
         button {
             opacity: 0.2;
         }
+
         button:hover {
             opacity: 1;
         }

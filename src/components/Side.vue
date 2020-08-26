@@ -65,7 +65,7 @@
             indexDemo() {
                 let length = window.history.length
                 console.log(length)
-                this.$router.push('index_demo')
+                this.$router.push('/index_demo')
             },
             goYt() {
                 this.$router.push('/index/ytdata')
