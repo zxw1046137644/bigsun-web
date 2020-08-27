@@ -68,7 +68,7 @@
                 this.$router.push('/index_demo')
             },
             goYt() {
-                this.$router.push('/index/ytdata')
+                this.$router.push('/tools/ytdata')
             }
         }
     }

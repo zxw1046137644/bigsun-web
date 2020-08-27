@@ -8,7 +8,7 @@
 
 <script>
     export default {
-        name: "rightMain",
+        name: "RightMain",
         data() {
             return {
                 time: ''

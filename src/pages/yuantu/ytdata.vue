@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import Side from "../../components/Side";
+    import Side from "../../components/tools/Side";
 
     export default {
         name: "ytdata",

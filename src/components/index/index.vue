@@ -1,29 +1,35 @@
 <template>
     <div class="index-class">
         <div class="index-main">
-            <RightMain></RightMain>
+            <RightMain class="right-main"></RightMain>
             <div class="ann" @click="tip">
                 <i>></i>
             </div>
         </div>
         <div class="index-warp">
-            jsakdj
+            <CircleButton></CircleButton>
         </div>
     </div>
 </template>
 
 <script>
-    import Side from "../Side"
-    import RightMain from "../rightMain"
+
+    import RightMain from "../RightMain"
+    import CircleButton from "../CircleButton"
 
     export default {
         name: "index",
         components: {
-            Side, RightMain
+            RightMain,
+            CircleButton
 
         },
         methods: {
             tip() {
+                window.scrollTo({
+                    top: window.innerHeight,
+                    behavior: "smooth"
+                });
 
             }
         }
@@ -34,20 +40,27 @@
     .index-class {
         /*font-size: 12rem;*/
         height: auto;
+
         .index-main {
             height: 100vh;
+
+            .right-main {
+                position: absolute;
+                top: 20%;
+                left: 35%;
+            }
+
             .ann {
-                animation: arrows 2s;
+                /*animation: arrows 2s;*/
                 -webkit-animation: arrows 2s infinite linear; /* Safari and Chrome */
                 position: absolute;
-                left: 43%;
-                top: 99%;
+                left: 50%;
+                top: 90%;
                 cursor: pointer;
 
                 i {
                     display: inline-block;
                     font-size: 3rem;
-                    width: 17rem;
                     transform: rotate(90deg);
                 }
 
@@ -56,24 +69,22 @@
                         transform: translateY(0rem);
                         opacity: 1;
                     }
-
-
                     50% {
                         transform: translateY(1rem);
                         opacity: 0.5;
                     }
-                    100% {
-
-                    }
 
                 }
-        }
+
+            }
 
 
         }
-        .index-warp{
-            background-color: red;
-            height: 10rem;
+
+        .index-warp {
+            background-color: white;
+            height: 100vh;
+            position: relative;
         }
     }
 </style>

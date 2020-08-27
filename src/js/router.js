@@ -6,6 +6,7 @@ import Child2 from '../components/api_auto_demo/child/child2'
 import InterfacePage from '../components/index_demo/face'
 import Index_demo from '../components/index_demo/index_demo'
 import YtData from '../pages/yuantu/ytdata'
+import Tools from '../components/tools/Tools'
 
 export default [
     //重定向进入到index
@@ -14,9 +15,9 @@ export default [
         redirect: '/index'
     },
     {
-        path: '/index',
-        name: 'index',
-        component: Index,
+        path: '/tools',
+        name: 'tools',
+        component: Tools,
         children: [
             {
                 path: 'ytdata',
@@ -24,6 +25,11 @@ export default [
                 component: YtData
             }
         ]
+    },
+    {
+        path: '/index',
+        name: 'index',
+        component: Index,
     },
     //首页demo的路由
     {
