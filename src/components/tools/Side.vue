@@ -1,7 +1,7 @@
 <template>
     <div class="side">
-        <el-row class="tac">
-            <el-col :span="12">
+        <el-row class="tac sid-row">
+            <el-col :span="12" class="side-col">
                 <el-menu
                         default-active="2"
                         class="el-menu-vertical-demo row"
@@ -50,8 +50,7 @@
 
     export default {
         name: "side",
-        components: {
-        },
+        components: {},
         data() {
             return {}
         },
@@ -76,8 +75,13 @@
 
 <style scoped type="text/css" lang="scss">
     .side {
+        .sid-row {
+            width: 12rem;
+            .side-col{
+                width: 100%;
+            }
+        }
 
-        width: 25rem;
         float: left;
 
         .row {
