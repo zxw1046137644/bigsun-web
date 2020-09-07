@@ -16,6 +16,24 @@ Vue.use(Vuex)
 Vue.use(axios)
 Vue.prototype.$http = axios
 
+axios.interceptors.request.use(function (config) {
+    console.log("拦截器成功")
+    console.log(config)
+    return config;
+}, function (error) {
+    console.log("拦截器失败")
+    return Promise.reject(error);
+});
+
+// 添加响应拦截器
+axios.interceptors.response.use(function (response) {
+  console.log("响应成功")
+    return response;
+}, function (error) {
+    // 对响应错误做点什么
+    return Promise.reject(error);
+});
+
 
 Vue.prototype.$getHistoryLength = g.w.getHistoryLength();
 const router = new VueRouter({

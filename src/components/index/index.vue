@@ -47,7 +47,7 @@
             .right-main {
                 position: absolute;
                 top: 20%;
-                left: 35%;
+                left: 36%;
             }
 
             .ann {
