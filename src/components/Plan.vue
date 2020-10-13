@@ -24,7 +24,7 @@
                 if (pathname == '/index') {
                     this.$notify({
                         title: this.tipMessage[Math.floor(Math.random() * (4 - 1))],
-                        message: '这是一个提示',
+                        message: '这是一个提示1',
                         type: 'warning',
                         duration: 1000
                     })
