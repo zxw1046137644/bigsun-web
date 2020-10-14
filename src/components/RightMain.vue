@@ -2,7 +2,6 @@
     <div class="com-right">
         <img src="../assets/20180419071714_GtlpvL.gif">
         <img src="../assets/20170828930426_qgjsWR.gif">
-        <div>十四是死是活</div>
         <img src="../assets/20180419071714_GtlpvL.gif">
     </div>
 </template>
