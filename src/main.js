@@ -36,6 +36,8 @@ axios.interceptors.response.use(function (response) {
 
 
 Vue.prototype.$getHistoryLength = g.w.getHistoryLength();
+
+
 const router = new VueRouter({
     mode:'history',//去掉链接中/# 线上需要后端配置test
     routes

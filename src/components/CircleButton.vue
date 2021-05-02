@@ -39,6 +39,12 @@
 
                     },
                     {
+                        content: 'toDolistDemo',
+                        type: this.type[Math.floor(Math.random() * (this.type.length))],
+                        address: '/toDolistDemo'
+
+                    },
+                    {
                         content: '小工具',
                         type: this.type[Math.floor(Math.random() * (this.type.length))],
                         address: '/tools'
