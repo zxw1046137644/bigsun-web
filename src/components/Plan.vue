@@ -18,6 +18,8 @@
   </div>
 </template>
 
+// 底部导航按钮
+
 <script>
 var a=2;
 var w = require("../js/requireGloabls");
