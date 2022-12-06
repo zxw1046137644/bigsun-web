@@ -39,7 +39,8 @@
 
 <style lang="scss" scoped>
     html, body, #app {
-        height: 100%;
+        height: 100vh;
+        width: 100%;
     }
 
     #app {

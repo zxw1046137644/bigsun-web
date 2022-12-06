@@ -28,18 +28,19 @@
         },
         created() {
             this.init()
+            localStorage.setItem("sitename", "1");
         },
         methods: {
             init() {
                 this.buttonMessages.push(
                     {
-                        content: '首页demo',
+                        content: '首页',
                         type: this.type[Math.floor(Math.random() * (this.type.length))],
                         address: '/index_demo'
 
                     },
                     {
-                        content: 'toDolistDemo',
+                        content: 'ToDolist',
                         type: this.type[Math.floor(Math.random() * (this.type.length))],
                         address: '/toDolistDemo'
 

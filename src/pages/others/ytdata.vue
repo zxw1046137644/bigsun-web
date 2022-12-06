@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="yadata">
         <el-row class="data-el-row">
             <el-col :span="12">
@@ -148,4 +148,4 @@
         }
 
     }
-</style>
+</style> -->

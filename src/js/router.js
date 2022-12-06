@@ -5,7 +5,7 @@ import Child1 from '../components/1api_auto_demo/child/child1'
 import Child2 from '../components/1api_auto_demo/child/child2'
 import InterfacePage from '../components/2index_demo/face'
 import Index_demo from '../components/2index_demo/index_demo'
-import YtData from '../pages/yuantu/ytdata'
+import ToDolistDemo from '../components/3todo_list_demo/todolist_demo'
 import Tools from '../components/tools/Tools'
 
 export default [
@@ -18,13 +18,13 @@ export default [
         path: '/tools',
         name: 'tools',
         component: Tools,
-        children: [
-            {
-                path: 'ytdata',
-                name: 'ytdata',
-                component: YtData
-            }
-        ]
+        // children: [
+        //     {
+        //         path: 'ytdata',
+        //         name: 'ytdata',
+        //         component: YtData
+        //     }
+        // ]
     },
     {
         path: '/index',
@@ -36,6 +36,11 @@ export default [
         path: '/index_demo',
         name: 'index_demo',
         component: Index_demo,
+    },
+    {
+        path: '/toDolistDemo',
+        name: 'toDolistDemo',
+        component: ToDolistDemo
     },
     {
         path: '/result',
