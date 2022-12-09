@@ -1,18 +1,23 @@
 <template>
     <div class="bottom">
-        <span>{{num}} items</span>
-        <el-button disabled
+        <span>{{nums}} items</span>
+        <el-button
         size="small"
-        >clear-all</el-button>
+        >clear</el-button>
     </div>
 </template>
 
 <script>
     export default {
         name: "todoBottom",
+        props: {
+        nums: {
+            type: Number,
+        }
+    },
         data() {
             return {
-                num: 1
+                nums: 0
             }
         },
         created() {

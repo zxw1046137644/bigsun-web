@@ -1,8 +1,8 @@
 <template>
     <div>
         <ul class="content">
-            <li v-for="(item,index) in li_lists" :key="index">
-                <span>{{item}}</span>
+            <li v-for="(item, index) in li_lists" :key="index">
+                <span>{{ item }}</span>
                 <button class="content-li-button el-icon-circle-close"></button>
             </li>
         </ul>
@@ -12,19 +12,22 @@
 <script>
 export default {
     name: "todoContent",
+    props: {
+        items: {
+            type: Array,
+            default: function () {
+                return [];
+            },
+        }
+    },
     data() {
         return {
-            li_lists: [
-               1,
-               2
-            ]
+            li_lists: this.items
         }
     },
     created() {
     },
     methods: {
-        addLi
-
     }
 }
 </script>

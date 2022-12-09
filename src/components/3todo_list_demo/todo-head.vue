@@ -4,23 +4,28 @@
      class="input-class"
      placeholder="请输入内容"
      clearable="true"
+     @keyup.enter.native="inList"
      >
     </el-input>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "todoHead",
+  components:{
+    
+  },
   data() {
     return {
       input: "",
     };
   },
   methods: {
-    inApi() {
-      this.$router.push("apiPage");
+    inList() {
+      if (this.input != ""){
+      this.$emit("setValue",this.input)
+    }
     },
   },
 };
