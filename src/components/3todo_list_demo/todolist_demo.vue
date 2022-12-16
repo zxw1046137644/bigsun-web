@@ -2,8 +2,8 @@
     <div class="all">
 
         <Head @setValue="getItems"></Head>
-        <Content :items="items" ></Content>
-        <Bottom :nums="nums"></Bottom>
+        <Content :items="items" @deleteItem = "deleteItem"></Content>
+        <Bottom :nums="nums" @clear = "clearItems"></Bottom>
     </div>
 </template>
 
@@ -28,6 +28,15 @@ export default {
         getItems(obj) {
              this.items.push(obj)
              this.nums=this.items.length
+        },
+        clearItems() {
+            this.items.splice(0,this.items.length)
+            this.nums=this.items.length
+        },
+        deleteItem(obj) {
+            console.log(obj)
+            this.items.splice(obj,1)
+            this.nums=this.items.length
         }
     }
 

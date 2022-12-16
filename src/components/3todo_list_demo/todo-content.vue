@@ -3,7 +3,9 @@
         <ul class="content">
             <li v-for="(item, index) in li_lists" :key="index">
                 <span>{{ item }}</span>
-                <button class="content-li-button el-icon-circle-close"></button>
+                <button class="content-li-button el-icon-circle-close"
+                @click="deleteItem(index)"
+                ></button>
             </li>
         </ul>
     </div>
@@ -28,6 +30,9 @@ export default {
     created() {
     },
     methods: {
+        deleteItem(key){
+            this.$emit("deleteItem",key)
+        }
     }
 }
 </script>
