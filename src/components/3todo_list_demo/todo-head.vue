@@ -21,6 +21,7 @@ export default {
       if (this.input != "") {
         this.$emit("setValue", this.input)
         this.input = ""
+        console.log(localStorage.getItem("sitename"))
       }
     },
   },

@@ -2,8 +2,8 @@
     <div class="all">
 
         <Head @setValue="getItems"></Head>
-        <Content :items="items" @deleteItem = "deleteItem"></Content>
-        <Bottom :nums="nums" @clear = "clearItems"></Bottom>
+        <Content :items="items" @deleteItem="deleteItem"></Content>
+        <Bottom :nums="nums" @clear="clearItems"></Bottom>
     </div>
 </template>
 
@@ -21,22 +21,26 @@ export default {
     data() {
         return {
             items: [],
-            nums:0,
+            nums: 0,
         }
     },
-    methods:{
+    created() {
+    },
+    methods: {
         getItems(obj) {
-             this.items.push(obj)
-             this.nums=this.items.length
+            this.items.push(obj)
+            this.nums = this.items.length
+            localStorage.setItem("items",this.items)
         },
         clearItems() {
-            this.items.splice(0,this.items.length)
-            this.nums=this.items.length
+            this.items.splice(0, this.items.length)
+            this.nums = this.items.length
+            localStorage.setItem("items",this.items)
         },
         deleteItem(obj) {
-            console.log(obj)
-            this.items.splice(obj,1)
-            this.nums=this.items.length
+            this.items.splice(obj, 1)
+            this.nums = this.items.length
+            localStorage.setItem("items",this.items)
         }
     }
 
