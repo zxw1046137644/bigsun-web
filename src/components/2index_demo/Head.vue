@@ -10,7 +10,7 @@
                 <li @click="inApi">接口工具</li>
             </ul>
         </div>
-        <div class="menu">
+        <div class="menu" @click="getinfo">
             <ul>
                 <li>登录</li>
             </ul>
@@ -19,65 +19,79 @@
 </template>
 
 <script>
-    import router from "../../js/router";
+import { hello } from "../../js/api/api";
+// import router from "../../js/router";
 
-    export default {
-        name: "Head",
-        methods: {
-            inApi() {
-                this.$router.push('apiPage')
-            }
+export default {
+    name: "Head",
+    data: () => {
+        return {
+            data: 1
+        }
+    },
+    created: {
+    },
+    methods: {
+        inApi() {
+            this.$router.push('apiPage')
+        },
+        async getinfo() {
+            // alert(
+            // hello()
+            // )
+            console.log(this)
+            const rep = await hello()
+            this.data = rep
+            console.log(rep)
+            alert(this.data.code)
         }
     }
+}
 </script>
 
 <style lang="scss" scoped>
-    /*
+/*
 
      */
-    .head {
-        /*position: fixed;*/
-        top: 0;
-        left: 0;
-        box-shadow: 0 2px 10px wheat;
-        width: 100%;
-        /*margin: 0 auto;*/
-        line-height: 3.8rem;
-        display: flex;
-        font-size: 1rem;
-        background-color: salmon;
-        justify-content: space-around;
+.head {
+    /*position: fixed;*/
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 10px wheat;
+    width: 100%;
+    /*margin: 0 auto;*/
+    line-height: 3.8rem;
+    display: flex;
+    font-size: 1rem;
+    background-color: salmon;
+    justify-content: space-around;
 
-        /*opacity: 0.5;*/
+    /*opacity: 0.5;*/
 
-        .logo {
+    .logo {}
 
-        }
+    .nav {}
 
-        .nav {
-
-        }
-
-        .menu {
-            img {
-                width: 1.9rem;
-                height: 1.7rem;
-            }
-        }
-
-
-        /*div {*/
-        /*    display: inline;*/
-        /*}*/
-
-        li:hover {
-            color: white;
+    .menu {
+        img {
+            width: 1.9rem;
+            height: 1.7rem;
         }
     }
 
-    li {
-        display: inline;
-        margin-left: 1rem;
-        cursor: pointer;
+
+    /*div {*/
+    /*    display: inline;*/
+    /*}*/
+
+    li:hover {
+        color: white;
     }
+}
+
+li {
+    display: inline;
+    margin-left: 1rem;
+    cursor: pointer;
+}
 </style>

@@ -1,5 +1,6 @@
-import request from './request';
+import request from '../public/request';
 
-export function hello(data) {
-    return request.get('/api/bigsun/hello', data);
+export function hello() {
+    console.log('hello')
+    return request.get('/api/rest/buss');
 }
