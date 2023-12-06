@@ -13,8 +13,8 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(VueRouter)
 Vue.use(Vuex)
-Vue.use(request)
-Vue.prototype.$http = request
+// Vue.use(request)
+// Vue.prototype.$http = request
 
 
 

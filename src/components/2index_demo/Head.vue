@@ -35,15 +35,27 @@ export default {
         inApi() {
             this.$router.push('apiPage')
         },
+        toast() {
+            this.$notify({
+                title: 2,
+                message: 111,
+                type: "warning",
+                duration: 1000,
+            });
+        },
         async getinfo() {
             // alert(
             // hello()
             // )
             console.log(this)
-            const rep = await hello()
-            this.data = rep
-            console.log(rep)
-            alert(this.data.code)
+            // const rep = await hello().then(rep =>{
+            hello().then(rep => {
+                this.data = rep
+            },
+                error => {
+                    console.log(error);
+                })
+            console.log(this.data)
         }
     }
 }
