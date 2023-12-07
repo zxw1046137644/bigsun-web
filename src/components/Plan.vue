@@ -1,19 +1,8 @@
 <template>
   <div class="back">
     <el-row>
-      <el-button
-        type="info"
-        plain
-        icon="el-icon-arrow-left"
-        circle
-        @click="forward"
-      ></el-button>
-      <el-button
-        type="warning"
-        icon="el-icon-arrow-right"
-        circle
-        @click="back"
-      ></el-button>
+      <el-button type="info" plain icon="el-icon-arrow-left" circle @click="forward"></el-button>
+      <el-button type="warning" icon="el-icon-arrow-right" circle @click="back"></el-button>
     </el-row>
   </div>
 </template>
@@ -21,23 +10,30 @@
 // 底部导航按钮22312313msssss
 
 <script>
-var a=2;
+var a = 2;
 var w = require("../js/requireGloabls");
 export default {
   name: "Plan",
   data() {
     return {
-      tipMessage: ["别点了到底了", "呱呱呱", "阿巴"],
+      tipMessage: [2],
       backMessage: ["冲啊", "快走"],
     };
   },
-  
+  created() {
+    this.init()
+    console.log(this)
+  }
+  ,
   methods: {
+    init() {
+      this.tipMessage = ["别点了到底了", "呱呱呱", "阿巴"]
+    },
     varTest() {
-    console.log(a)
+      console.log(a)
     },
     forward() {
-        
+
       this.$router.go(-1);
       let pathname = location.pathname;
       this.varTest();
