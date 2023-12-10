@@ -5,7 +5,7 @@
         <img src="../assets/20180419071714_GtlpvL.gif">
     </div>
 </template>
-
+//首页主图
 <script>
     export default {
         name: "RightMain",

@@ -7,7 +7,7 @@
   </div>
 </template>
 
-// 底部导航按钮22312313msssss
+// 底部导航按钮
 
 <script>
 var a = 2;
@@ -22,6 +22,7 @@ export default {
   },
   created() {
     this.init()
+    // eslint-disable-next-line no-console
     console.log(this)
   }
   ,
@@ -33,7 +34,6 @@ export default {
       console.log(a)
     },
     forward() {
-
       this.$router.go(-1);
       let pathname = location.pathname;
       this.varTest();

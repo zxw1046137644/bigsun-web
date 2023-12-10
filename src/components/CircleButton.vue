@@ -2,9 +2,8 @@
     <div class="circleButton">
         <el-row class="button-row">
             <el-tooltip v-for="(item, index) of buttonMessages" :key="index" class="item" effect="dark"
-                        :content=item.content
-                        placement="top">
-                <el-button :type=item.type circle @click="go(item.address)">{{item.content}}</el-button>
+                :content=item.content placement="top">
+                <el-button :type=item.type circle @click="go(item.address)">{{ item.content }}</el-button>
             </el-tooltip>
 
             <!--            <el-button type="primary" icon="el-icon-edit" circle></el-button>-->
@@ -15,65 +14,65 @@
         </el-row>
     </div>
 </template>
-
+//首页功能块
 <script>
-    export default {
-        name: "CircleButton",
-        data() {
-            return {
-                icon: [],
-                type: ['warning', 'danger', 'info', 'success', 'primary'],
-                buttonMessages: []
-            }
-        },
-        created() {
-            this.init()
-            localStorage.setItem("sitename", "1");
-        },
-        methods: {
-            init() {
-                this.buttonMessages.push(
-                    {
-                        content: '首页',
-                        type: this.type[Math.floor(Math.random() * (this.type.length))],
-                        address: '/index_demo'
+const w = require("../js/requireGloabls");
+export default {
+    name: "CircleButton",
+    data() {
+        return {
+            icon: [],
+            type: ['warning', 'danger', 'info', 'success', 'primary'],
+            buttonMessages: []
+        }
+    },
+    created() {
+        this.init()
+        localStorage.setItem("sitename", "这是一个localStorage");
+    },
+    methods: {
+        init() {
+            this.buttonMessages.push(
+                {
+                    content: '首页',
+                    type: this.type[w.getRomType(this.type.length)],
+                    address: '/index_demo'
 
-                    },
-                    {
-                        content: 'ToDolist',
-                        type: this.type[Math.floor(Math.random() * (this.type.length))],
-                        address: '/toDolistDemo'
+                },
+                {
+                    content: 'ToDolist',
+                    type: this.type[w.getRomType(this.type.length)],
+                    address: '/toDolistDemo'
 
-                    },
-                    {
-                        content: '小工具',
-                        type: this.type[Math.floor(Math.random() * (this.type.length))],
-                        address: '/tools'
-                    }
-                )
-            },
-            go($address) {
-                this.$router.push($address)
-            }
+                },
+                {
+                    content: '小工具',
+                    type: this.type[w.getRomType(this.type.length)],
+                    address: '/tools'
+                }
+            )
+        },
+        go($address) {
+            this.$router.push($address)
         }
     }
+}
 </script>
 
 <style scoped type="text/css" lang="scss">
-    .circleButton {
-        position: absolute;
-        top: 20%;
-        left: 20%;
-         width: auto;
-        button-row {
+.circleButton {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: auto;
 
-        }
+    button-row {}
 
-        button {
-            width: 8rem;
-            height: 8rem;
-            margin-left: 2rem;
-        }
-
+    button {
+        width: 8rem;
+        height: 8rem;
+        margin-left: 2rem;
     }
+
+}
 </style>

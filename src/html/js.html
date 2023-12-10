@@ -1,0 +1,71 @@
+<html>
+  <body>
+    <p class="heig">滚动</p>
+  </body>
+</html>
+
+<script type="text/javascript">
+  console.log(window);
+  console.log(document);
+
+  function a() {
+    console.log("我是fun a");
+  }
+  var b = function() {
+    console.log("我是fun b");
+  };
+
+//   c() => {
+//     console.log("我是fun c");
+//   };
+
+  function Person(age) {
+    console.log("我是fun d");
+    this.age = age;
+    console.log(this.age);
+  }
+  var d = new Person(11);
+
+  setTimeout(() => {
+    console.log("time");
+    alert("time");
+  }, 3000);
+
+  a();
+  b();
+
+
+  let lastKnownScrollPosition = 0;
+let ticking = false;
+
+function doSomething(scrollPos) {
+  // 利用滚动位置完成一些事情
+}
+
+document.addEventListener("copy", (event) => {
+  lastKnownScrollPosition = window.scrollY;
+  console.log(event);
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      doSomething(lastKnownScrollPosition);
+      ticking = false;
+    });
+
+    ticking = true;
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //   c();
+</script>
