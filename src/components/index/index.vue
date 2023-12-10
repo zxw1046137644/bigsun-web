@@ -24,6 +24,14 @@
             CircleButton
 
         },
+        created(){
+            console.log('created');
+            console.log(window);
+            console.log(document);
+        },
+        mounted(){
+            console.log('mounted');
+        },
         methods: {
             tip() {
                 window.scrollTo({
