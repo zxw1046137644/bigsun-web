@@ -1,7 +1,10 @@
 <template>
     <div class="notfound">
-        <h1>404</h1>
-        <span>页面未找到，<router-link to="/"> 返回首页></router-link></span>
+        <h1>未登录</h1>
+        <span>未登录，<router-link :to="{
+            path: '/',
+            replace: true
+        }"> 返回首页></router-link></span>
     </div>
 </template>
 
