@@ -24,6 +24,7 @@ export default {
     this.init()
     // eslint-disable-next-line no-console
     console.log(this)
+    console.log(this.$notify)
   }
   ,
   methods: {

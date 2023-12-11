@@ -15,16 +15,19 @@
     console.log("我是fun b");
   };
 
-//   c() => {
-//     console.log("我是fun c");
-//   };
+  //   c() => {
+  //     console.log("我是fun c");
+  //   };
 
   function Person(age) {
     console.log("我是fun d");
     this.age = age;
     console.log(this.age);
   }
+
+  Person.prototype.name = "zzz";
   var d = new Person(11);
+  console.log(d.prototype);
 
   setTimeout(() => {
     console.log("time");
@@ -34,38 +37,25 @@
   a();
   b();
 
-
   let lastKnownScrollPosition = 0;
-let ticking = false;
+  let ticking = false;
 
-function doSomething(scrollPos) {
-  // 利用滚动位置完成一些事情
-}
-
-document.addEventListener("copy", (event) => {
-  lastKnownScrollPosition = window.scrollY;
-  console.log(event);
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      doSomething(lastKnownScrollPosition);
-      ticking = false;
-    });
-
-    ticking = true;
+  function doSomething(scrollPos) {
+    // 利用滚动位置完成一些事情
   }
-});
 
+  document.addEventListener("copy", (event) => {
+    lastKnownScrollPosition = window.scrollY;
+    console.log(event);
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        doSomething(lastKnownScrollPosition);
+        ticking = false;
+      });
 
-
-
-
-
-
-
-
-
-
-
+      ticking = true;
+    }
+  });
 
   //   c();
 </script>
