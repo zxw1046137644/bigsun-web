@@ -1,13 +1,11 @@
 import Result from '../components/1api_auto/apiResult/ApiResult.vue'
 import ApiList from '../components/1api_auto/apiList/ApiList.vue'
 import Index from '../components/index/index'
-import Child1 from '../components/1api_auto/child/child1'
-import Child2 from '../components/1api_auto/child/child2'
-import InterfacePage from '../components/2index_demo/face'
 import Index_demo from '../components/2index_demo/index_demo'
 import ToDoListDemo from '../components/3todo_list_demo/todolist_demo'
 import Tools from '../components/tools/Tools'
 import NotLogin from '../pages/others/NotLogin'
+import Main from "@/components/1api_auto/apiList/Main";
 
 export default [
     //重定向进入到index
@@ -58,27 +56,16 @@ export default [
         name: 'result',
         component: Result
     },
-
     {
-        path: '/apiPage',
-        name: 'interfacePage',
-        component: InterfacePage,
+        path: '/main',
+        name: 'Main',
+        component: Main,
         children: [
             {
                 path: 'apiList',
                 name: 'ApiList',
                 component: ApiList
-            },
-            {
-                path: 'child1',
-                name: 'child1',
-                component: Child1
-            },
-            {
-                path: 'child2',
-                name: 'child2',
-                component: Child2
-            },
+            }
         ]
     }
 ]

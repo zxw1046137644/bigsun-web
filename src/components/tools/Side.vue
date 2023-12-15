@@ -18,7 +18,7 @@
                         </template>
                         <el-menu-item-group class="el-menu-item-group">
                             <template slot="title">--------------------------</template>
-                            <el-menu-item index="1-1" @click="goYt">yt测试</el-menu-item>
+                            <el-menu-item index="1-1" @click="goYt">api</el-menu-item>
                             <el-menu-item index="1-2">选项2</el-menu-item>
                         </el-menu-item-group>
                         <!--                        <el-menu-item-group title="&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;">-->

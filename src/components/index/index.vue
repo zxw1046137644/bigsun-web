@@ -22,7 +22,6 @@ export default {
     components: {
         RightMain,
         CircleButton
-
     },
     data() {
         return {}

@@ -1,5 +1,4 @@
 <template>
-
     <div>
         <Head></Head>
         <span>
@@ -15,7 +14,7 @@
             <el-button size="small">child2</el-button>
         </router-link>
 
-        <router-view></router-view>
+<!--        <router-view></router-view>-->
 
     </div>
 </template>

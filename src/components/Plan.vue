@@ -1,8 +1,9 @@
 <template>
   <div class="back">
     <el-row>
-      <el-button type="info" plain icon="el-icon-arrow-left" circle @click="forward"></el-button>
-      <el-button type="warning" icon="el-icon-arrow-right" circle @click="back"></el-button>
+      <el-button type="info" plain icon="el-icon-arrow-left" circle @click= "forward()"></el-button>
+      <el-button type="warning" icon="el-icon-arrow-right" circle @click= "back()"></el-button>
+      <el-button type="success" icon="el-icon-s-custom" circle></el-button>
     </el-row>
   </div>
 </template>
@@ -22,11 +23,9 @@ export default {
   },
   created() {
     this.init()
-    // eslint-disable-next-line no-console
     console.log(this)
     console.log(this.$notify)
-  }
-  ,
+  },
   methods: {
     init() {
       this.tipMessage = ["别点了到底了", "呱呱呱", "阿巴"]
