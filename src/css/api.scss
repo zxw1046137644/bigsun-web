@@ -1,9 +1,9 @@
 .paging {//分页组件  样式
   display: flex;
-  justify-content: space-between;
-  margin-left: auto;
+  justify-content: flex-end;
+  //margin-left: auto;
   .inline {
     display: inline-block;
   }
-  font-size: 100rem;
+  //font-size: 100rem;
 }

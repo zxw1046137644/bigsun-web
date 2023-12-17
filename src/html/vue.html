@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+<body>
+<div id="app" class="container">
+    <span>{{ hello }}</span>
+    <input type="text" v-bind:value="wenben"/>
+    <input type="text" v-model="wenben"/>
+    <div @click="toast">
+        <button type="button" v-bind:value="button2" @click.stop="toast">{{ button1 }}</button>
+    </div>
+    <div @click="toast">
+        <button type="button" v-bind:value="button2" @click.once="toast">{{ button1 }}</button>
+    </div>
+
+    <div style="height: 200px">
+        <span>计算属性 天气变换{{ info }}</span>
+        <button type="button" @click="change">点击变化天气</button>
+        <input type="text" style="height: 100%" v-model="jisuan"/>
+    </div>
+
+    <span>监听属性</span>
+    <!--    <input type="text" v-model="jianting"/>-->
+</div>
+
+<script>
+    const x = new Vue({
+        // el: '#app',
+        // data: {
+        //     hello: 'zzz'
+        // }
+        data() {
+            return {
+                hello: 'zzz',
+                wenben: '12312v-model',
+                button1: '这是一个按钮',
+                button2: '这是一个button2button2',
+                bji: ' b-ji',
+                isHot: false
+            }
+        },
+        computed: {
+            jisuan: {
+                get() {
+                    return this.wenben + this.bji
+                },
+                set(value) {
+                    console.log(value)
+                }
+            },
+            info() {
+                return this.isHot ? '炎热' : '寒冷'
+            }
+        },
+        methods: {
+            toast(event) {
+                alert(event.target.innerHTML)
+                console.log(event.target)
+            },
+            change() {
+                this.isHot = !this.isHot
+            }
+        }
+    })
+    x.$mount('#app')
+
+</script>
+
+
+</body>
+
+
+</html>
+<style type="text/css">
+   html body, div, input {
+        margin-top: 20px;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .container {
+        height: calc(100% - 30px);
+        width: calc(100% - 30px);
+        margin: 15px;
+        border: 1px solid red;
+        overflow: auto;
+    }
+</style>

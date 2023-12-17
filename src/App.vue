@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <!--        <canvas v-bind:class="['canvas1',isNight?'night':'']"></canvas>-->
     <router-view></router-view>
-    <!--    <router-view name="middle"></router-view>-->
-    <!--    <router-view name="footer"></router-view>-->
     <div>
       <Plan></Plan>
     </div>
@@ -40,9 +37,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-html, body, #app {
+html, body, #app{
   height: 100vh;
   width: 100%;
+  //overflow:hidden;
 }
 
 #app {

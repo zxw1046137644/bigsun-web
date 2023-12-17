@@ -47,7 +47,7 @@ export default {
         {
           content: '测试平台',
           type: this.type[w.getRomType(this.type.length)],
-          address: '/main'
+          address: '/api/index'
         }
     )
     localStorage.setItem("sitename", "这是一个localStorage");

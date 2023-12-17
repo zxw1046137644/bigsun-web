@@ -23,10 +23,10 @@ axios.interceptors.request.use(
 // 添加响应拦截器
 axios.interceptors.response.use(
     function (response) {
-        let data = JSON.parse(JSON.stringify(response.data))
+        let data = JSON.parse(JSON.stringify(response.data.data))
         console.log(response.config.url, data)
-        if (!data.status) {
-            Vue.prototype.$message.error(data.message)
+        if (!response.data.status) {
+            Vue.prototype.$message.error(response.data.message)
         }
         Vue.prototype.$loading().close()
         return data;

@@ -1,5 +1,14 @@
 <template>
   <div>
+    <span>选择项目</span>
+    <el-select v-model="options.value.projectName" clearable placeholder="请选择">
+      <el-option
+          v-for="item in options.list"
+          :key="item.id"
+          :value="item.projectName">
+      </el-option>
+    </el-select>
+    <span>选择项目</span>
     <el-select v-model="options.value.projectName" clearable placeholder="请选择">
       <el-option
           v-for="item in options.list"

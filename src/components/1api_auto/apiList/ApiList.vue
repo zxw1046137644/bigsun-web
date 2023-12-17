@@ -1,101 +1,190 @@
 <template>
-  <div class="page">
-    <el-table
-        :data="tableData"
-        style="width: 100%;margin-bottom: 20px;"
-        row-key="id"
-        border
+  <div class="warp-box">
+    <!--    <div class="inline">-->
+    <!--      <div class="result-first-label" v-for="(item,index) in items">-->
+    <!--        <label>{{ item.key }}</label>-->
+    <!--        <span :class="{pass:index==1,fail:index==2}">{{ item.value }}</span>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <div>
+      <el-input
+          placeholder="输入关键字进行过滤"
+          v-model="filterText">
+      </el-input>
 
-        default-expand-all
-        :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
-      <el-table-column
-          prop="id"
-          label="序号"
-          sortable
-          width="90"
-          align="center"
-          :resizable="false">
-      </el-table-column>
-      <el-table-column
-          prop="address"
-          label="接口地址">
-      </el-table-column>
-      <el-table-column
-          prop="param"
-          label="接口用例总数">
-      </el-table-column>
-      <el-table-column
-          prop="status"
-          label="成功数"
-          width="100"
-          align="center">
-      </el-table-column>
-      <el-table-column
-          prop="expect"
-          label="失败数"
-          width="100"
-          align="center">
-      </el-table-column>
-      <el-table-column
-          prop="date"
-          label="执行时间"
-          width="100"
-          :resizable="false"
-          align="center">
-      </el-table-column>
-      <el-table-column
-          prop="set"
-          label="操作"
-          width="100"
-          :resizable="false"
-          align="center">
-
-        <p @click="findResult" class="page-p">详细数据</p>
-        <!--                    <p @click="findResult" v-loading.fullscreen.lock="fullscreenLoading">详细数据</p>-->
-
-      </el-table-column>
-    </el-table>
-    <div class="paging">
-      <paging></paging>
+      <el-tree
+          lazy
+          class="filter-tree"
+          show-checkbox
+          node-key="id"
+          @click="getData"
+          :data="projectData"
+          :props="defaultProps"
+          default-expand-all
+          ref="tree">
+      </el-tree>
+    </div>
+    <div class="warp-table">
+      <el-table
+          :data="tableData"
+          style="width: 100%;margin-bottom: 20px;"
+          row-key="id"
+          border
+          default-expand-all
+          :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
+        <el-table-column
+            prop="id"
+            label="序号"
+            type="selection"
+            sortable
+            width="90"
+            align="center"
+            :resizable="false">
+        </el-table-column>
+        <el-table-column
+            prop="address"
+            label="接口地址">
+        </el-table-column>
+        <el-table-column
+            prop="param"
+            width="200"
+            label="传入参数">
+        </el-table-column>
+        <el-table-column
+            prop="status"
+            label="执行状态"
+            width="100"
+            align="center">
+        </el-table-column>
+        <el-table-column
+            prop="expect"
+            label="期望返回"
+            width="100"
+            align="center">
+        </el-table-column>
+        <el-table-column
+            prop="result"
+            label="实际返回"
+            width="100"
+            :resizable="false"
+            align="center">
+        </el-table-column>
+        <el-table-column
+            prop="date"
+            label="执行时间"
+            width="100"
+            :resizable="false"
+            align="center">
+        </el-table-column>
+      </el-table>
     </div>
   </div>
 </template>
 
 <script>
-import Paging from "../../Paging";
-import g from "../../../js/api/apiList";
+
+
+import {caseList} from "@/js/api/api";
 
 export default {
-  name: 'ApiList',
-  props: {
-    msg: String
-  },
-  components: {
-    Paging
-  },
+  name: 'ApiResult',
+  components: {},
+  props: {},
+  methods: {
+    getData() {
+      console.log(
+          111
+      )
+      setTimeout(() => {
+        this.tableData = this.tableData1
+      }, 2000)
+    },
+    loadNode(node, resolve) {
+      console.log(node)
+      if (node.level === 0) {
+        return resolve([{name: 'region1'}, {name: 'region2'}]);
+      }
+      if (node.level > 3) return resolve([]);
+
+      var hasChild;
+      if (node.data.name === 'region1') {
+        hasChild = true;
+      } else if (node.data.name === 'region2') {
+        hasChild = false;
+      } else {
+        hasChild = Math.random() > 0.5;
+      }
+
+      setTimeout(() => {
+        var data;
+        if (hasChild) {
+          data = [{
+            name: 'zone' + this.count++
+          }, {
+            name: 'zone' + this.count++
+          }];
+        } else {
+          data = [];
+        }
+
+        resolve(data);
+      }, 500);
+    },
+
+    async projectListInit() {
+      let params = {
+        "offSet": 0,
+        "pageSize": 10,
+        "type": 1
+      }
+      const rep2 = await caseList(params)
+      this.projectData = rep2.list
+      console.log(rep2)
+    }
+  }
+  ,
+  created() {
+    this.projectListInit()
+  }
+  ,
   data() {
     return {
-      g: g,
-      tableData: [{
+      filterText: '',
+      projectData: '',
+      defaultProps: {
+        children: 'children',
+        label: 'name'
+      },
+      tableData: '',
+      tableData1: [{
         id: 1,
         date: '2016-05-02',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1518 弄'
       }],
-      fullscreenLoading: false,
-      data: {}
+      // loading: true
+      items: [
+        {
+          key: '总数:',
+          value: 213,
+        },
+        {
+          key: '通过数:',
+          value: 22,
+        },
+        {
+          key: '失败数:',
+          value: 11,
+        },
+        {
+          key: '成功比例:',
+          value: 0.22
+        }
+      ],
+      ispass: true
     }
-  },
-  mounted() {
-    console.log(this)
-  },
-  methods: {
-    findResult() {
-      this.$router.push('result');
-      console.log(this)
-    },
-
   }
+  ,
 }
 </script>
 
@@ -103,13 +192,40 @@ export default {
 <style scoped type="text/css" lang="scss">
 @import "./src/css/api";
 
-.page-p {
-  cursor: pointer;
+.inline {
+  /*display: inline-block;*/
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1em;
+  font-size: 1.3em;
+
+  .result-first-label {
+    label {
+      margin-left: 2em;
+    }
+
+    span {
+      margin-left: 0.5em;
+    }
+
+    .pass {
+      color: green;
+    }
+
+    .fail {
+      color: red;
+    }
+  }
 }
 
-.page {
-  p:hover {
-    opacity: 0.6;
+.warp-box {
+  display: flex;
+  justify-content: flex-start;
+  margin: 20px;
+
+  .warp-table {
+    margin-left: 20px;
+    flex-grow: 1;
   }
 }
 

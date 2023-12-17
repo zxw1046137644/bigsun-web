@@ -5,7 +5,9 @@ import Index_demo from '../components/2index_demo/index_demo'
 import ToDoListDemo from '../components/3todo_list_demo/todolist_demo'
 import Tools from '../components/tools/Tools'
 import NotLogin from '../pages/others/NotLogin'
-import Main from "@/components/1api_auto/apiList/Main";
+import Main from "@/components/1api_auto/main/Main";
+import ApiIndex from "@/components/1api_auto/main/ApiIdex";
+import ApiResult from "@/components/1api_auto/apiResult/ApiResult";
 
 export default [
     //重定向进入到index
@@ -57,14 +59,24 @@ export default [
         component: Result
     },
     {
-        path: '/main',
+        path: '/api',
         name: 'Main',
         component: Main,
         children: [
             {
+                path: 'index',
+                name: 'ApiIndex',
+                component: ApiIndex
+            },
+            {
                 path: 'apiList',
                 name: 'ApiList',
                 component: ApiList
+            },
+            {
+                path: 'apiResult',
+                name: 'ApiResult',
+                component: ApiResult
             }
         ]
     }

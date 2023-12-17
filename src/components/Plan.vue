@@ -1,9 +1,10 @@
 <template>
   <div class="back">
     <el-row>
-      <el-button type="info" plain icon="el-icon-arrow-left" circle @click= "forward()"></el-button>
-      <el-button type="warning" icon="el-icon-arrow-right" circle @click= "back()"></el-button>
+      <el-button type="info" plain icon="el-icon-arrow-left" circle @click="forward()"></el-button>
+      <el-button type="warning" icon="el-icon-arrow-right" circle @click="back()"></el-button>
       <el-button type="success" icon="el-icon-s-custom" circle></el-button>
+      <el-button type="success" @click='$router.push("/index")' icon="el-icon-house" circle></el-button>
     </el-row>
   </div>
 </template>
@@ -40,8 +41,8 @@ export default {
       if (pathname == "/index") {
         this.$notify({
           title: this.tipMessage[
-            Math.floor(Math.random() * (this.tipMessage.length - 1))
-          ],
+              Math.floor(Math.random() * (this.tipMessage.length - 1))
+              ],
           message: w.getHistoryLength(),
           type: "warning",
           duration: 1000,
@@ -52,8 +53,8 @@ export default {
       this.$router.go(1);
       this.$notify({
         title: this.backMessage[
-          Math.floor(Math.random() * this.backMessage.length)
-        ],
+            Math.floor(Math.random() * this.backMessage.length)
+            ],
         message: w.getHistoryLength(),
         type: "warning",
         duration: 1000,
