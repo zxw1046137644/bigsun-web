@@ -1,17 +1,48 @@
 import axios from "axios";
 import Vue from "vue";
+import {Loading} from 'element-ui';
 
 // axios.defaults.baseURL = 'http://localhost:9089'
 
+let reqNum = 0
+let elLoadingComponent
+
+function startLoading() {
+    if (reqNum === 0) {
+        elLoadingComponent = Loading.service(options);
+    }
+    reqNum++
+}
+
+function endLoading() {
+    // 延迟 300ms 再调用 closeLoading 方法, 合并300ms内的请求
+    // 当有请求中嵌套请求的情况也也可开启延时来解决
+    // setTimeout(closeLoading, 300)
+    closeLoading()
+}
+
+function closeLoading() {
+    if (reqNum <= 0) return
+    reqNum--
+    if (reqNum === 0) {
+        console.log('结束loading')
+        elLoadingComponent.close()
+    }
+}
+
+
+const options = {
+    lock: true,
+    text: 'Loading',
+    spinner: 'el-icon-loading',
+    background: 'rgba(0, 0, 0, 0.7)'
+}
+
 axios.interceptors.request.use(
     function (config) {
-        console.log("拦截器成功",config);
-        Vue.prototype.$loading({
-            lock: true,
-            text: 'Loading',
-            spinner: 'el-icon-loading',
-            background: 'rgba(0, 0, 0, 0.7)'
-        })
+        console.log("拦截器成功", config);
+        startLoading()
+
         return config;
     },
     function (error) {
@@ -28,7 +59,7 @@ axios.interceptors.response.use(
         if (!response.data.status) {
             Vue.prototype.$message.error(response.data.message)
         }
-        Vue.prototype.$loading().close()
+        endLoading()
         return data;
     },
     function (error) {

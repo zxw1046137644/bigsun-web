@@ -23,7 +23,7 @@
         <el-menu-item index="3" @click="$router.push('/api/apiResult')">任务列表</el-menu-item>
         <el-menu-item index="4" @click="$router.push('/api/apiList')">用例列表</el-menu-item>
       </div>
-      <div>
+      <div class="select-box">
         <el-select v-model="value" placeholder="请选择环境" size="medium">
           <el-option
               v-for="item in options"
@@ -33,6 +33,9 @@
           >
           </el-option>
         </el-select>
+      </div>
+      <div class="image-box">
+        <el-avatar src=""></el-avatar>
       </div>
     </el-menu>
   </div>
@@ -62,16 +65,19 @@ export default {
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
+    },
+    async getCase() {
+      let params = {
+        "offSet": 0,
+        "pageSize": 10,
+        "type": 4
+      }
+      const rep2 = await caseList(params)
+      console.log(rep2)
     }
   },
-  async mounted() {
-    let params = {
-      "offSet": 0,
-      "pageSize": 10,
-      "type": 4
-    }
-    const rep2 = await caseList(params)
-    console.log(rep2)
+  mounted() {
+    this.getCase()
   }
 
 }
@@ -95,6 +101,18 @@ export default {
   display: flex;
   justify-content: space-between;
   align-content: center;
+
+  .select-box {
+    margin-left: auto;
+  }
+
+  .image-box {
+    span{
+      position: relative;
+      top: 15%;
+    }
+     margin-right: 20px;
+  }
 
   .el-list {
     display: flex;

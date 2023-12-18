@@ -4,9 +4,34 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <style>
+        html body, div, input {
+            margin-top: 20px;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .acss {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+
+        .fontsize {
+            font-size: 50px;
+        }
+
+        .container {
+            height: calc(100% - 30px);
+            width: calc(100% - 30px);
+            margin: 15px;
+            border: 1px solid red;
+            overflow: auto;
+        }
+    </style>
 </head>
 <body>
-<div id="app" class="container">
+<div id="app">
     <span>{{ hello }}</span>
     <input type="text" v-bind:value="wenben"/>
     <input type="text" v-model="wenben"/>
@@ -24,7 +49,26 @@
     </div>
 
     <span>监听属性</span>
-    <!--    <input type="text" v-model="jianting"/>-->
+    <input type="text" v-model="number.a"/>
+    <input type="text" v-model="number.b"/>
+
+
+    <div :class="acss">
+        <span>动态绑定css</span>
+    </div>
+
+    <span v-if="vif">v-if</span>
+    <span v-show="vshow">v-show</span>
+    <button type="button" @click="vshow=!vshow">点击变化v-if</button>
+    <button type="button" @click="vif=!vif">点击变化v-show</button>
+
+
+    <span>列表渲染</span>
+    <ul>
+        <li v-for="(p,index) in person" :key="index">
+            {{ p.name }}-{{ index }}
+        </li>
+    </ul>
 </div>
 
 <script>
@@ -35,12 +79,43 @@
         // }
         data() {
             return {
+                person: [
+                    {
+                        'name': 'zxw',
+                        'age': 12
+                    },
+                    {
+                        'name': 'zxw',
+                        'age': 11
+                    },
+                    {
+                        'name': 'zxw',
+                        'age': 13
+                    }
+                ],
+                vshow: true,
+                vif: true,
+                acss: ['acss', 'fontsize'],
                 hello: 'zzz',
                 wenben: '12312v-model',
                 button1: '这是一个按钮',
                 button2: '这是一个button2button2',
                 bji: ' b-ji',
-                isHot: false
+                isHot: false,
+                number: {
+                    a: 1,
+                    b: 2
+                }
+            }
+        },
+        watch: {
+            number: {
+                immediate: true,
+                deep: true,
+                handler(v, n) {
+                    console.log('a被修改', v, n)
+                }
+
             }
         },
         computed: {
@@ -56,6 +131,7 @@
                 return this.isHot ? '炎热' : '寒冷'
             }
         },
+
         methods: {
             toast(event) {
                 alert(event.target.innerHTML)
@@ -63,7 +139,22 @@
             },
             change() {
                 this.isHot = !this.isHot
+            },
+            //过滤数据
+            valueFilter() {
+                console.log(this.person.filter((p) => {
+                    return p.age > 11
+                }))
+            },
+            //循环数据
+            valueEach() {
+                this.person.forEach((p) => {
+                    console.log(p.age)
+                })
             }
+        },
+        created() {
+            this.valueFilter()
         }
     })
     x.$mount('#app')
@@ -75,18 +166,3 @@
 
 
 </html>
-<style type="text/css">
-   html body, div, input {
-        margin-top: 20px;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    .container {
-        height: calc(100% - 30px);
-        width: calc(100% - 30px);
-        margin: 15px;
-        border: 1px solid red;
-        overflow: auto;
-    }
-</style>

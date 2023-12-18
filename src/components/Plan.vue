@@ -1,9 +1,8 @@
 <template>
   <div class="back">
-    <el-row>
+    <el-row style="position: relative;">
       <el-button type="info" plain icon="el-icon-arrow-left" circle @click="forward()"></el-button>
       <el-button type="warning" icon="el-icon-arrow-right" circle @click="back()"></el-button>
-      <el-button type="success" icon="el-icon-s-custom" circle></el-button>
       <el-button type="success" @click='$router.push("/index")' icon="el-icon-house" circle></el-button>
     </el-row>
   </div>
@@ -66,9 +65,15 @@ export default {
 
 <style scoped type="text/css" lang="scss">
 .back {
+  img {
+    position: absolute; //<img>为 bottom 样式设置为绝对定位
+    bottom: 0px; //底端对齐
+  }
+
   position: fixed;
   bottom: 3rem;
   right: 2rem;
+  display: flex;
 
   button {
     opacity: 1;

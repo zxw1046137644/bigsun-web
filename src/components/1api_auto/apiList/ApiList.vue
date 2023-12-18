@@ -144,9 +144,12 @@ export default {
   }
   ,
   created() {
-    this.projectListInit()
+
   }
   ,
+  mounted() {
+    this.projectListInit()
+  },
   data() {
     return {
       filterText: '',
