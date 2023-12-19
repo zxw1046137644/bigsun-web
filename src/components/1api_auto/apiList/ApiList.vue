@@ -11,12 +11,11 @@
           placeholder="输入关键字进行过滤"
           v-model="filterText">
       </el-input>
-
       <el-tree
           lazy
           class="filter-tree"
           show-checkbox
-          node-key="id"
+          key="id"
           @click="getData"
           :data="projectData"
           :props="defaultProps"
@@ -85,6 +84,7 @@
 
 
 import {caseList} from "@/js/api/api";
+import Vue from "vue";
 
 export default {
   name: 'ApiResult',
@@ -99,66 +99,70 @@ export default {
         this.tableData = this.tableData1
       }, 2000)
     },
-    loadNode(node, resolve) {
-      console.log(node)
-      if (node.level === 0) {
-        return resolve([{name: 'region1'}, {name: 'region2'}]);
-      }
-      if (node.level > 3) return resolve([]);
+    // loadNode(node, resolve) {
+    //   console.log(node)
+    //   if (node.level === 0) {
+    //     return resolve([{name: 'region1'}, {name: 'region2'}]);
+    //   }
+    //   if (node.level > 3) return resolve([]);
+    //
+    //   var hasChild;
+    //   if (node.data.name === 'region1') {
+    //     hasChild = true;
+    //   } else if (node.data.name === 'region2') {
+    //     hasChild = false;
+    //   } else {
+    //     hasChild = Math.random() > 0.5;
+    //   }
+    //
+    //   setTimeout(() => {
+    //     var data;
+    //     if (hasChild) {
+    //       data = [{
+    //         name: 'zone' + this.count++
+    //       }, {
+    //         name: 'zone' + this.count++
+    //       }];
+    //     } else {
+    //       data = [];
+    //     }
+    //
+    //     resolve(data);
+    //   }, 500);
+    // },
 
-      var hasChild;
-      if (node.data.name === 'region1') {
-        hasChild = true;
-      } else if (node.data.name === 'region2') {
-        hasChild = false;
-      } else {
-        hasChild = Math.random() > 0.5;
-      }
+    async projectListInit(params) {
 
-      setTimeout(() => {
-        var data;
-        if (hasChild) {
-          data = [{
-            name: 'zone' + this.count++
-          }, {
-            name: 'zone' + this.count++
-          }];
-        } else {
-          data = [];
-        }
-
-        resolve(data);
-      }, 500);
-    },
-
-    async projectListInit() {
-      let params = {
-        "offSet": 0,
-        "pageSize": 10,
-        "type": 1
-      }
       const rep2 = await caseList(params)
-      this.projectData = rep2.list
-      console.log(rep2)
+      this.projectData1 = rep2.list
+      this.projectData = this.projectData1
+      console.log(this.projectData)
     }
   }
   ,
   created() {
 
-  }
-  ,
+  },
+
   mounted() {
-    this.projectListInit()
+    let params = {
+      "offSet": 0,
+      "pageSize": 10,
+      "type": 1
+    }
+    this.projectListInit(params)
+
   },
   data() {
     return {
       filterText: '',
-      projectData: '',
+      projectData: [],
+      projectData1: [],
       defaultProps: {
         children: 'children',
         label: 'name'
       },
-      tableData: '',
+      tableData: [],
       tableData1: [{
         id: 1,
         date: '2016-05-02',
@@ -184,10 +188,35 @@ export default {
           value: 0.22
         }
       ],
-      ispass: true
+      ispass: true,
+      value1: ''
+    }
+  },
+  computed: {
+    // projectData() {
+    //   return this.projectData.filter((v) => {
+    //     return v.name.indexOf(this.filterText) !== -1
+    //   })
+    // }
+  },
+  watch: {
+    filterText(n, v) {
+     let params = {
+        "offSet": 0,
+        "pageSize": 10,
+        "type": 2
+      }
+      this.projectListInit(params)
+      // console.log(n, v)
+      // this.value1 = this.filterText
+      // this.projectData1 = this.projectData.filter((v) => {
+      //   this.id = !this.id
+      //   return v.name.indexOf(this.filterText) !== -1
+      // })
+      // this.nextTick(
+      // )
     }
   }
-  ,
 }
 </script>
 

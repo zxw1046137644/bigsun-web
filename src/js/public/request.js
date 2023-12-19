@@ -6,6 +6,21 @@ import {Loading} from 'element-ui';
 
 let reqNum = 0
 let elLoadingComponent
+let errMessage = []
+
+// let errMessageList = (message) => {
+//     errMessage.push(message)
+// }
+function errMessageList(message) {
+    let t = false
+    if (errMessage.length == 0) {
+        errMessage.push(message)
+        return !t
+    } else {
+        errMessage.push(message)
+        return !errMessage.includes(message)
+    }
+}
 
 function startLoading() {
     if (reqNum === 0) {
@@ -26,7 +41,11 @@ function closeLoading() {
     reqNum--
     if (reqNum === 0) {
         console.log('结束loading')
-        elLoadingComponent.close()
+        Vue.nextTick(function () {
+            // DOM 更新了
+            errMessage = []
+            elLoadingComponent.close()
+        })
     }
 }
 
@@ -42,7 +61,6 @@ axios.interceptors.request.use(
     function (config) {
         console.log("拦截器成功", config);
         startLoading()
-
         return config;
     },
     function (error) {
@@ -64,7 +82,8 @@ axios.interceptors.response.use(
     },
     function (error) {
         // 对响应错误做点什么
-        Vue.prototype.$message.error(error.toString())
+        endLoading()
+        errMessageList(error.toString()) ? Vue.prototype.$message.error(error.toString()) : ''
         return Promise.reject(error);
     }
 );

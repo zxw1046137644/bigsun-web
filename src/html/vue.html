@@ -33,7 +33,7 @@
 <body>
 <div id="app">
     <span>{{ hello }}</span>
-    <input type="text" v-bind:value="wenben"/>
+    <input type="text" v-bind:value="jishuan1"/>
     <input type="text" v-model="wenben"/>
     <div @click="toast">
         <button type="button" v-bind:value="button2" @click.stop="toast">{{ button1 }}</button>
@@ -45,7 +45,7 @@
     <div style="height: 200px">
         <span>计算属性 天气变换{{ info }}</span>
         <button type="button" @click="change">点击变化天气</button>
-        <input type="text" style="height: 100%" v-model="jisuan"/>
+        <input type="text" style="height: 100%" v-model="jishuan"/>
     </div>
 
     <span>监听属性</span>
@@ -63,12 +63,25 @@
     <button type="button" @click="vif=!vif">点击变化v-show</button>
 
 
-    <span>列表渲染</span>
-    <ul>
-        <li v-for="(p,index) in person" :key="index">
-            {{ p.name }}-{{ index }}
-        </li>
-    </ul>
+    <div>
+        <span>列表渲染</span>
+        <ul>
+            <li v-for="(p,index) in person" :key="index">
+                {{ p.name }}-{{ index }}
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <span>列表过滤</span>
+        <input type="text" v-model="personFilterValue"/>
+        <ul>
+            <li v-for="(p,index) in personFilter" :key="index">
+                {{ p.name }}-{{ p.age }}
+            </li>
+        </ul>
+        <button type="button">点击排序</button>
+    </div>
 </div>
 
 <script>
@@ -79,20 +92,22 @@
         // }
         data() {
             return {
+                personFilterValue: '',
                 person: [
                     {
-                        'name': 'zxw',
+                        'name': 'zxw111',
                         'age': 12
                     },
                     {
-                        'name': 'zxw',
+                        'name': 'zxw2',
                         'age': 11
                     },
                     {
-                        'name': 'zxw',
+                        'name': 'zxw3',
                         'age': 13
                     }
                 ],
+                personFilter: [],
                 vshow: true,
                 vif: true,
                 acss: ['acss', 'fontsize'],
@@ -105,7 +120,8 @@
                 number: {
                     a: 1,
                     b: 2
-                }
+                },
+                jishuan:111
             }
         },
         watch: {
@@ -116,18 +132,21 @@
                     console.log('a被修改', v, n)
                 }
 
+            },
+            personFilterValue() {
+                this.personFilter = this.person.filter((p) => {
+                    return p.name.indexOf(this.personFilterValue) !== -1
+                }).sort((a, b) => {
+                    return b.age - a.age
+                })
             }
         },
         computed: {
-            jisuan: {
-                get() {
-                    return this.wenben + this.bji
-                },
-                set(value) {
-                    console.log(value)
-                }
+            jishuan1() {
+                return this.wenben + this.bji
             },
             info() {
+                //计算属性内的值被修改 结果过发生变化
                 return this.isHot ? '炎热' : '寒冷'
             }
         },
@@ -141,7 +160,7 @@
                 this.isHot = !this.isHot
             },
             //过滤数据
-            valueFilter() {
+            valueFilter(value) {
                 console.log(this.person.filter((p) => {
                     return p.age > 11
                 }))
@@ -155,6 +174,7 @@
         },
         created() {
             this.valueFilter()
+            this.personFilter = this.person
         }
     })
     x.$mount('#app')
