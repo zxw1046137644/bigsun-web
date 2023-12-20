@@ -1,45 +1,53 @@
 <template>
   <div class="page-box">
+    <el-button>创建任务</el-button>
     <div>
       <el-table
           :data="tableData"
           style="width: 100%;margin-bottom: 20px;"
           row-key="id"
           border
-
           default-expand-all
           :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
         <el-table-column
             prop="id"
-            label="序号"
+            label="任务id"
             sortable
             width="90"
             align="center"
             :resizable="false">
         </el-table-column>
         <el-table-column
-            prop="address"
-            label="接口地址">
+            width="100"
+            prop="taskName"
+            label="任务名称">
         </el-table-column>
         <el-table-column
-            prop="param"
+            width="100"
+            prop="total"
             label="用例总数">
         </el-table-column>
         <el-table-column
             prop="status"
-            label="成功数"
+            label="状态"
             width="100"
             align="center">
         </el-table-column>
         <el-table-column
-            prop="expect"
-            label="失败数"
+            prop="runTimed"
+            label="是否定时运行"
             width="100"
             align="center">
         </el-table-column>
         <el-table-column
-            prop="date"
-            label="执行时间"
+            prop="runType"
+            label="执行方式"
+            width="100"
+            align="center">
+        </el-table-column>
+        <el-table-column
+            prop="user"
+            label="创建人"
             width="100"
             :resizable="false"
             align="center">
@@ -47,11 +55,16 @@
         <el-table-column
             prop="set"
             label="操作"
-            width="100"
+            width="300"
             :resizable="false"
             align="center">
-
-          <p @click="findResult" class="page-p">详细数据</p>
+          <el-switch
+              v-model="value"
+              active-color="#13ce66"
+              inactive-color="#ff4949">
+          </el-switch>
+          <span @click="findResult" class="page-p">查看详情</span>
+          <span @click="findResult" class="page-p">执行情况</span>
           <!--                    <p @click="findResult" v-loading.fullscreen.lock="fullscreenLoading">详细数据</p>-->
 
         </el-table-column>
@@ -79,13 +92,17 @@ export default {
     return {
       g: g,
       tableData: [{
-        id: 1,
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
+        id: 1131212123,
+        total: 1,
+        status: '启用',
+        runTimed: '否',
+        runType: '串行',
+        taskName: 'test1',
+        user: 'zzz'
       }],
       fullscreenLoading: false,
-      data: {}
+      data: {},
+      value:true
     }
   },
   mounted() {
@@ -113,10 +130,12 @@ export default {
   div {
     width: 100%;
   }
+
   height: 80%;
   display: flex;
   flex-flow: row wrap;
-  align-content:space-between;
+  align-content: flex-start;
+
   p:hover {
     opacity: 0.6;
   }

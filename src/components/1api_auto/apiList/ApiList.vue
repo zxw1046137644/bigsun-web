@@ -9,7 +9,8 @@
     <div>
       <el-input
           placeholder="输入关键字进行过滤"
-          v-model="filterText">
+          v-model="filterText"
+          @keyup.native.enter="searchTree">
       </el-input>
       <el-tree
           lazy
@@ -17,7 +18,7 @@
           show-checkbox
           key="id"
           @click="getData"
-          :data="projectData"
+          :data="caseData"
           :props="defaultProps"
           default-expand-all
           ref="tree">
@@ -90,7 +91,60 @@ export default {
   name: 'ApiResult',
   components: {},
   props: {},
+
+  data() {
+    return {
+      filterText: '',
+      requestList: {
+        caseReq: {
+          "offSet": 0,
+          "pageSize": 10,
+          "type": 1
+        },
+      },
+      responseList: {
+        caseRes: []
+      },
+      caseData: [],
+      defaultProps: {
+        children: 'children',
+        label: 'name'
+      },
+      tableData: [],
+      tableData1: [{
+        id: 1,
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }],
+      // loading: true
+      items: [
+        {
+          key: '总数:',
+          value: 213,
+        },
+        {
+          key: '通过数:',
+          value: 22,
+        },
+        {
+          key: '失败数:',
+          value: 11,
+        },
+        {
+          key: '成功比例:',
+          value: 0.22
+        }
+      ],
+      ispass: true,
+      value1: ''
+    }
+  },
   methods: {
+    searchTree() {
+      this.caseData = []
+      this.caseListRep(this.requestList.caseReq)
+    },
     getData() {
       console.log(
           111
@@ -131,91 +185,25 @@ export default {
     //   }, 500);
     // },
 
-    async projectListInit(params) {
-
-      const rep2 = await caseList(params)
-      this.projectData1 = rep2.list
-      this.projectData = this.projectData1
-      console.log(this.projectData)
+    async caseListRep(params) {
+      const rep = await caseList(params)
+      this.caseData = this.responseList.caseRes = rep.list
     }
-  }
-  ,
+  },
+  computed: {},
+  watch: {
+    filterText() {
+      this.caseData = []
+      this.caseData = this.responseList.caseRes.filter((v) => {
+        return v.name.indexOf(this.filterText) !== -1
+      })
+    }
+  },
   created() {
 
   },
-
   mounted() {
-    let params = {
-      "offSet": 0,
-      "pageSize": 10,
-      "type": 1
-    }
-    this.projectListInit(params)
-
-  },
-  data() {
-    return {
-      filterText: '',
-      projectData: [],
-      projectData1: [],
-      defaultProps: {
-        children: 'children',
-        label: 'name'
-      },
-      tableData: [],
-      tableData1: [{
-        id: 1,
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }],
-      // loading: true
-      items: [
-        {
-          key: '总数:',
-          value: 213,
-        },
-        {
-          key: '通过数:',
-          value: 22,
-        },
-        {
-          key: '失败数:',
-          value: 11,
-        },
-        {
-          key: '成功比例:',
-          value: 0.22
-        }
-      ],
-      ispass: true,
-      value1: ''
-    }
-  },
-  computed: {
-    // projectData() {
-    //   return this.projectData.filter((v) => {
-    //     return v.name.indexOf(this.filterText) !== -1
-    //   })
-    // }
-  },
-  watch: {
-    filterText(n, v) {
-     let params = {
-        "offSet": 0,
-        "pageSize": 10,
-        "type": 2
-      }
-      this.projectListInit(params)
-      // console.log(n, v)
-      // this.value1 = this.filterText
-      // this.projectData1 = this.projectData.filter((v) => {
-      //   this.id = !this.id
-      //   return v.name.indexOf(this.filterText) !== -1
-      // })
-      // this.nextTick(
-      // )
-    }
+    this.caseListRep(this.requestList.caseReq)
   }
 }
 </script>
