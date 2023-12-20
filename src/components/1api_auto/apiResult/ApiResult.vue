@@ -1,7 +1,11 @@
 <template>
   <div class="page-box">
-    <el-button>创建任务</el-button>
-    <div>
+    <div class="left-box">
+      <span>左边</span>
+
+    </div>
+    <div class="right-box">
+      <el-button style="margin-bottom: 20px">创建任务</el-button>
       <el-table
           :data="tableData"
           style="width: 100%;margin-bottom: 20px;"
@@ -13,7 +17,7 @@
             prop="id"
             label="任务id"
             sortable
-            width="90"
+            width="190"
             align="center"
             :resizable="false">
         </el-table-column>
@@ -32,6 +36,13 @@
             label="状态"
             width="100"
             align="center">
+          <template slot-scope="scope">
+            <el-switch
+                v-model="value1"
+                active-color="#13ce66"
+                inactive-color="#c0c0c0">
+            </el-switch>
+          </template>
         </el-table-column>
         <el-table-column
             prop="runTimed"
@@ -58,21 +69,18 @@
             width="300"
             :resizable="false"
             align="center">
-          <el-switch
-              v-model="value"
-              active-color="#13ce66"
-              inactive-color="#ff4949">
-          </el-switch>
-          <span @click="findResult" class="page-p">查看详情</span>
-          <span @click="findResult" class="page-p">执行情况</span>
-          <!--                    <p @click="findResult" v-loading.fullscreen.lock="fullscreenLoading">详细数据</p>-->
-
+          <template slot-scope="scope">
+            <span @click="findResult" class="page-p">查看详情</span>
+            <span @click="findResult" class="page-p">执行情况</span>
+          </template>
         </el-table-column>
       </el-table>
+
     </div>
-    <div class="paging">
-      <paging></paging>
-    </div>
+
+    <!--    <div class="paging">-->
+    <!--      <paging></paging>-->
+    <!--    </div>-->
   </div>
 </template>
 
@@ -102,7 +110,7 @@ export default {
       }],
       fullscreenLoading: false,
       data: {},
-      value:true
+      value1: true
     }
   },
   mounted() {
@@ -126,15 +134,23 @@ export default {
   cursor: pointer;
 }
 
+
 .page-box {
-  div {
-    width: 100%;
+  .right-box {
+    margin-left: auto;
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+  .left-box {
+    margin: 20px;
+    width: 300px;
+    border: solid red 2px ;
   }
 
   height: 80%;
   display: flex;
   flex-flow: row wrap;
-  align-content: flex-start;
+  justify-content: flex-start;
 
   p:hover {
     opacity: 0.6;
