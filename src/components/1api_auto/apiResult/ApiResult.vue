@@ -15,13 +15,13 @@
           </el-steps>
 
           <el-form v-if="formShow" ref="form" :model="form" label-width="80px">
-            <el-form-item label="活动名称">
+            <el-form-item label="任务名称">
               <el-input v-model="form.name"></el-input>
             </el-form-item>
-            <el-form-item label="活动区域">
-              <el-select v-model="form.region" placeholder="请选择活动区域">
-                <el-option label="区域一" value="shanghai"></el-option>
-                <el-option label="区域二" value="beijing"></el-option>
+            <el-form-item label="执行方式">
+              <el-select v-model="form.region" placeholder="请选择执行方式">
+                <el-option label="串行" value="shanghai"></el-option>
+                <el-option label="并行" value="beijing"></el-option>
               </el-select>
             </el-form-item>
             <el-form-item label="活动时间">
@@ -34,24 +34,19 @@
                 <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>
               </el-col>
             </el-form-item>
-            <el-form-item label="即时配送">
+            <el-form-item label="立即生效">
               <el-switch v-model="form.delivery"></el-switch>
             </el-form-item>
-            <el-form-item label="活动性质">
+            <el-form-item label="执行周期">
               <el-checkbox-group v-model="form.type">
-                <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
-                <el-checkbox label="地推活动" name="type"></el-checkbox>
-                <el-checkbox label="线下主题活动" name="type"></el-checkbox>
-                <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
+                <el-checkbox label="1" name="type"></el-checkbox>
+                <el-checkbox label="2" name="type"></el-checkbox>
+                <el-checkbox label="3" name="type"></el-checkbox>
+                <el-checkbox label="4" name="type"></el-checkbox>
+                <el-checkbox label="5" name="type"></el-checkbox>
               </el-checkbox-group>
             </el-form-item>
-            <el-form-item label="特殊资源">
-              <el-radio-group v-model="form.resource">
-                <el-radio label="线上品牌商赞助"></el-radio>
-                <el-radio label="线下场地免费"></el-radio>
-              </el-radio-group>
-            </el-form-item>
-            <el-form-item label="活动形式">
+            <el-form-item label="任务备注">
               <el-input type="textarea" v-model="form.desc"></el-input>
             </el-form-item>
             <!--            <el-form-item>-->
@@ -103,9 +98,10 @@
           </div>
 
           <div slot="footer" class="dialog-footer">
-            <el-button v-if="!formShow" style="margin-top: 12px;" @click="next(-1)">上一步</el-button>
+            <el-button v-if="!formShow" style="margin-top: 12px;" @click="next(-1)">返回</el-button>
             <el-button @click="dialogFormVisible = false, active>1?active--:'',formShow=!formShow">取 消</el-button>
-            <el-button style="margin-top: 12px;" @click="next(1)">下一步</el-button>
+            <el-button style="margin-top: 12px;" >保存</el-button>
+            <el-button style="margin-top: 12px;" @click="next(1)">绑定用例</el-button>
           </div>
         </el-dialog>
       </div>

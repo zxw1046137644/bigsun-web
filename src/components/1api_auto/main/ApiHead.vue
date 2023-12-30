@@ -61,9 +61,16 @@ export default {
   },
   created() {
     this.value = this.options[0].label
+    const time1 = setInterval(() => {
+      console.log('定时器在执行任务1213321')
+    },1000)
+    this.$once('hook:beforeDestroy', () => { clearInterval(time1); })
+
   },
   methods: {
+
     handleSelect(key, keyPath) {
+
       console.log(key, keyPath);
     },
     async getCase() {
@@ -78,6 +85,9 @@ export default {
   },
   mounted() {
     this.getCase()
+  },
+  beforeDestroy() {
+    clearInterval(this.time1 = null)
   }
 
 }
@@ -107,11 +117,12 @@ export default {
   }
 
   .image-box {
-    span{
+    span {
       position: relative;
       top: 15%;
     }
-     margin-right: 20px;
+
+    margin-right: 20px;
   }
 
   .el-list {
