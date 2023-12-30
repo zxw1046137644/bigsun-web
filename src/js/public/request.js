@@ -1,6 +1,7 @@
 import axios from "axios";
 import Vue from "vue";
 import {Loading} from 'element-ui';
+import {throwNoCurrentInstance} from "vue-router/src/composables/utils";
 
 // axios.defaults.baseURL = 'http://localhost:9089'
 
@@ -74,10 +75,11 @@ axios.interceptors.response.use(
     function (response) {
         let data = JSON.parse(JSON.stringify(response.data.data))
         // console.log(response.config.url, data)
+        endLoading()
         if (!response.data.status) {
             Vue.prototype.$message.error(response.data.message)
+            throw new Error()
         }
-        endLoading()
         return data;
     },
     function (error) {

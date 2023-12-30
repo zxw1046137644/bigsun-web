@@ -20,7 +20,7 @@
             <el-menu-item index="2-4-3">选项3</el-menu-item>
           </el-submenu>
         </el-submenu>
-        <el-menu-item index="3" @click="$router.push('/api/apiResult')">任务列表</el-menu-item>
+        <el-menu-item index="3" @click="$router.push('/api/apiResult')">任务集合</el-menu-item>
         <el-menu-item index="4" @click="$router.push('/api/apiList')">用例列表</el-menu-item>
       </div>
       <div class="select-box">

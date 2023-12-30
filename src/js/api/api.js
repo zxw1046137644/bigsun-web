@@ -21,3 +21,10 @@ export function caseList(params) {
 export function caseTaskList(params) {
   return request.post("/api/common/caseTaskList",params);
 }
+
+export function updateCaseTask(params) {
+  return request.post("/api/common/updateCaseTask",params);
+}
+export function startCase(params) {
+  return request.post("/api/common/startCase",params);
+}

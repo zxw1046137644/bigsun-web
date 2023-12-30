@@ -5,10 +5,11 @@
 
     </div>
     <div class="right-box">
-      <el-button style="margin-bottom: 20px" @click="dialogFormVisible = true">创建任务</el-button>
-      <el-button style="margin-bottom: 20px">任务列表</el-button>
+      <el-button @click="dialogFormVisible = true">创建任务</el-button>
+      <el-button>任务列表</el-button>
+      <el-button @click="caskTaskList">搜索</el-button>
       <div class="middle-form-box">
-        <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+        <el-dialog title="新建任务" :visible.sync="dialogFormVisible">
 
           <el-steps :active="active" :align-center="true">
             <el-step title="设置信息"></el-step>
@@ -106,6 +107,7 @@
           </div>
         </el-dialog>
       </div>
+
       <el-table
           :data="tableData"
           style="width: 100%;margin-bottom: 20px;"
@@ -132,15 +134,16 @@
             label="用例总数">
         </el-table-column>
         <el-table-column
-            prop="taskStatus"
             label="状态"
             width="100"
             align="center">
           <template slot-scope="scope">
             <el-switch
-                v-model="value1"
+                v-model="scope.row.taskStatus === 1 ? true : false"
                 active-color="#13ce66"
-                inactive-color="#c0c0c0">
+                inactive-color="#c0c0c0"
+                @change="changeStatus($event, scope.row, scope.$index)"
+            >
             </el-switch>
           </template>
         </el-table-column>
@@ -171,15 +174,13 @@
             align="center">
           <template slot-scope="scope" class="use-box">
             <span @click="startCase" class="page-p">运行</span>
-            <span @click="startCase" class="page-p">编辑</span>
+            <span @click="dialogForm($event,scope.row)" class="page-p">编辑</span>
             <span @click="findResult" class="page-p">详情</span>
             <span @click="findResult" class="page-p">明细</span>
           </template>
         </el-table-column>
       </el-table>
-
     </div>
-
     <!--    <div class="paging">-->
     <!--      <paging></paging>-->
     <!--    </div>-->
@@ -189,7 +190,7 @@
 <script>
 import Paging from "../../Paging";
 import g from "../../../js/api/apiList";
-import {caseTaskList, pageList} from "@/js/api/api";
+import {caseTaskList, pageList, startCase, updateCaseTask} from "@/js/api/api";
 
 export default {
   name: 'ApiList',
@@ -220,33 +221,57 @@ export default {
         resource: '',
         desc: ''
       },
-      g: g,
       tableData: [],
       fullscreenLoading: false,
-      data: {},
-      value1: true
     }
   },
   created() {
   },
   mounted() {
-    console.log(this)
     this.caskTaskList()
   },
   methods: {
+   async dialogForm(e,row) {
+      let params = {
+        "id": row.id,
+      }
+      await caseTaskList(params)
+    },
     async caskTaskList() {
       let params1 = {
         "offSet": 0,
         "pageSize": 20,
-        "projectId": [1, 2]
+        "projectIdList": [1, 2]
       }
       let rep = (await caseTaskList(params1)).list
       this.tableData = rep
     },
+    async changeStatus(e, row, index) {
+      let taskStatus
+      row.taskStatus === 1 ? taskStatus = 0 : taskStatus = 1
+      let params = {
+        "id": row.id,
+        "taskStatus": taskStatus
+      }
+      await updateCaseTask(params).then(
+          (res) => {
+            console.log(res.status)
+            row.taskStatus = taskStatus
+          },
+          (err) => {
+            console.log(err)
+          }
+      )
+    },
 
-    startCase() {
 
-      alert('启动运行')
+    async startCase() {
+      let params = {
+        "caseIdList": [4, 5, 6]
+      }
+      await startCase(params).then((e) => {
+        this.$message.success("启动成功：" + e)
+      })
     },
     next(value) {
       if (value > 0) {
@@ -316,6 +341,10 @@ export default {
 
     span {
       margin-left: 20px;
+    }
+
+    button {
+      margin-bottom: 20px
     }
   }
 
