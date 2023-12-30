@@ -59,7 +59,7 @@ const options = {
 
 axios.interceptors.request.use(
     function (config) {
-        console.log("拦截器成功", config);
+        // console.log("拦截器成功", config);
         startLoading()
         return config;
     },
@@ -73,7 +73,7 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
     function (response) {
         let data = JSON.parse(JSON.stringify(response.data.data))
-        console.log(response.config.url, data)
+        // console.log(response.config.url, data)
         if (!response.data.status) {
             Vue.prototype.$message.error(response.data.message)
         }

@@ -16,3 +16,8 @@ export function pageList(params) {
 export function caseList(params) {
   return request.post("/api/common/caseList",params);
 }
+
+//获取case任务列表
+export function caseTaskList(params) {
+  return request.post("/api/common/caseTaskList",params);
+}

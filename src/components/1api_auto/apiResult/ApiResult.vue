@@ -6,6 +6,7 @@
     </div>
     <div class="right-box">
       <el-button style="margin-bottom: 20px" @click="dialogFormVisible = true">创建任务</el-button>
+      <el-button style="margin-bottom: 20px">任务列表</el-button>
       <div class="middle-form-box">
         <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
 
@@ -98,9 +99,9 @@
           </div>
 
           <div slot="footer" class="dialog-footer">
-            <el-button v-if="!formShow" style="margin-top: 12px;" @click="next(-1)">返回</el-button>
+            <el-button v-if="!formShow" style="margin-top: 12px;" @click="next(-1)">上一步</el-button>
             <el-button @click="dialogFormVisible = false, active>1?active--:'',formShow=!formShow">取 消</el-button>
-            <el-button style="margin-top: 12px;" >保存</el-button>
+            <el-button style="margin-top: 12px;">保存</el-button>
             <el-button style="margin-top: 12px;" @click="next(1)">绑定用例</el-button>
           </div>
         </el-dialog>
@@ -127,11 +128,11 @@
         </el-table-column>
         <el-table-column
             width="100"
-            prop="total"
+            prop="caseTotal"
             label="用例总数">
         </el-table-column>
         <el-table-column
-            prop="status"
+            prop="taskStatus"
             label="状态"
             width="100"
             align="center">
@@ -144,8 +145,8 @@
           </template>
         </el-table-column>
         <el-table-column
-            prop="runTimed"
-            label="是否定时运行"
+            prop="taskTimer"
+            label="定时运行"
             width="100"
             align="center">
         </el-table-column>
@@ -156,7 +157,7 @@
             align="center">
         </el-table-column>
         <el-table-column
-            prop="user"
+            prop="author"
             label="创建人"
             width="100"
             :resizable="false"
@@ -168,9 +169,11 @@
             width="300"
             :resizable="false"
             align="center">
-          <template slot-scope="scope">
-            <span @click="findResult" class="page-p">查看详情</span>
-            <span @click="findResult" class="page-p">执行情况</span>
+          <template slot-scope="scope" class="use-box">
+            <span @click="startCase" class="page-p">运行</span>
+            <span @click="startCase" class="page-p">编辑</span>
+            <span @click="findResult" class="page-p">详情</span>
+            <span @click="findResult" class="page-p">明细</span>
           </template>
         </el-table-column>
       </el-table>
@@ -186,6 +189,7 @@
 <script>
 import Paging from "../../Paging";
 import g from "../../../js/api/apiList";
+import {caseTaskList, pageList} from "@/js/api/api";
 
 export default {
   name: 'ApiList',
@@ -217,24 +221,33 @@ export default {
         desc: ''
       },
       g: g,
-      tableData: [{
-        id: 1131212123,
-        total: 1,
-        status: '启用',
-        runTimed: '否',
-        runType: '串行',
-        taskName: 'test1',
-        user: 'zzz'
-      }],
+      tableData: [],
       fullscreenLoading: false,
       data: {},
       value1: true
     }
   },
+  created() {
+  },
   mounted() {
     console.log(this)
+    this.caskTaskList()
   },
   methods: {
+    async caskTaskList() {
+      let params1 = {
+        "offSet": 0,
+        "pageSize": 20,
+        "projectId": [1, 2]
+      }
+      let rep = (await caseTaskList(params1)).list
+      this.tableData = rep
+    },
+
+    startCase() {
+
+      alert('启动运行')
+    },
     next(value) {
       if (value > 0) {
         this.active++
@@ -273,6 +286,10 @@ export default {
   flex-flow: row wrap;
   justify-content: flex-start;
 
+  .use-box {
+    margin-left: 20px;
+  }
+
   .step-two-box {
     .tree-box {
       width: 150px;
@@ -296,6 +313,10 @@ export default {
   .right-box {
     margin-top: 20px;
     margin-right: 20px;
+
+    span {
+      margin-left: 20px;
+    }
   }
 
   .left-box {
