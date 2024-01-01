@@ -101,7 +101,7 @@
 
           <div slot="footer" class="dialog-footer">
             <el-button v-if="!formShow" style="margin-top: 12px;" @click="next(-1)">上一步</el-button>
-            <el-button @click="dialogFormVisible = false, active>1?active--:'',formShow=!formShow">取 消</el-button>
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
             <el-button style="margin-top: 12px;">保存</el-button>
             <el-button style="margin-top: 12px;" @click="next(1)">绑定用例</el-button>
           </div>
