@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {pageList} from "@/js/api/api";
+import {projectList} from "@/js/api/api";
 
 export default {
   name: "Middle",
@@ -41,7 +41,7 @@ export default {
         "offSet": 0,
         "pageSize": 20,
       }
-      let rep = (await pageList(params1)).data.list
+      let rep = (await projectList(params1)).list
       this.options.list = rep
       this.options.value = JSON.parse(JSON.stringify(rep[0]))
     }

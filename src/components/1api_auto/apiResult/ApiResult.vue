@@ -22,30 +22,26 @@
             </el-form-item>
             <el-form-item label="执行方式">
               <el-select v-model="form.region" placeholder="请选择执行方式">
-                <el-option label="串行" value="shanghai"></el-option>
-                <el-option label="并行" value="beijing"></el-option>
+                <el-option label="串行" value="bx"></el-option>
+                <el-option label="并行" value="cx"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="活动时间">
-              <el-col :span="11">
-                <el-date-picker type="date" placeholder="选择日期" v-model="form.date1"
-                                style="width: 100%;"></el-date-picker>
-              </el-col>
-              <el-col class="line" :span="2">-</el-col>
-              <el-col :span="11">
-                <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>
-              </el-col>
-            </el-form-item>
+<!--            <el-form-item label="活动时间">-->
+<!--              <el-col :span="11">-->
+<!--                <el-date-picker type="date" placeholder="选择日期" v-model="form.date1"-->
+<!--                                style="width: 100%;"></el-date-picker>-->
+<!--              </el-col>-->
+<!--              <el-col class="line" :span="2">-</el-col>-->
+<!--              <el-col :span="11">-->
+<!--                <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>-->
+<!--              </el-col>-->
+<!--            </el-form-item>-->
             <el-form-item label="立即生效">
               <el-switch v-model="form.delivery"></el-switch>
             </el-form-item>
             <el-form-item label="执行周期">
-              <el-checkbox-group v-model="form.type">
-                <el-checkbox label="1" name="type"></el-checkbox>
-                <el-checkbox label="2" name="type"></el-checkbox>
-                <el-checkbox label="3" name="type"></el-checkbox>
-                <el-checkbox label="4" name="type"></el-checkbox>
-                <el-checkbox label="5" name="type"></el-checkbox>
+              <el-checkbox-group  v-for="item in ins" v-model="form.type" style="display: inline-block">
+                <el-checkbox :label=item name="type"></el-checkbox>
               </el-checkbox-group>
             </el-form-item>
             <el-form-item label="任务备注">
@@ -188,7 +184,7 @@
 </template>
 
 <script>
-import Paging from "../../Paging";
+import Paging from "../../../pages/Paging";
 import g from "../../../js/api/apiList";
 import {caseTaskList, pageList, startCase, updateCaseTask} from "@/js/api/api";
 
@@ -202,6 +198,7 @@ export default {
   },
   data() {
     return {
+      ins:[1,2,34,'zz'],
       props: {
         label: 'name',
         children: 'zones'
@@ -213,10 +210,10 @@ export default {
       formShow: true,
       form: {
         name: '',
-        region: '',
+        region: 'cx',
         date1: '',
         date2: '',
-        delivery: false,
+        delivery: true,
         type: [],
         resource: '',
         desc: ''

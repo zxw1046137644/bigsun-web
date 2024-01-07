@@ -7,7 +7,7 @@
         @select="handleSelect"
     >
       <div class="el-list">
-        <el-menu-item index="1" @click="$router.push('/api/index')">处理中心</el-menu-item>
+        <el-menu-item index="1" @click="$router.push('/api/index')">数据中心</el-menu-item>
         <el-submenu index="2">
           <template slot="title">我的工作台</template>
           <el-menu-item index="2-4">环境管理</el-menu-item>
@@ -35,7 +35,8 @@
         </el-select>
       </div>
       <div class="image-box">
-        <el-avatar src=""></el-avatar>
+        <el-avatar src="https://avatars.githubusercontent.com/u/48079484?v=4"></el-avatar>
+<!--        <el-avatar src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></el-avatar>-->
       </div>
     </el-menu>
   </div>

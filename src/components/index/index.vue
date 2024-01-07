@@ -15,7 +15,7 @@
 <script>
 
 import RightMain from "../RightMain"
-import CircleButton from "../CircleButton"
+import CircleButton from "../../pages/CircleProject"
 
 export default {
     name: "index",

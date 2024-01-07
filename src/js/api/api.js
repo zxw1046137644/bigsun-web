@@ -6,10 +6,7 @@ export function hello() {
 
 
 //获取项目列表
-export function pageList(params) {
-  // setTimeout(()=>{
-  //   console.log('延迟')
-  // },9000)
+export function projectList(params) {
   return request.post("/api/common/projectList",params);
 }
 //获取case列表

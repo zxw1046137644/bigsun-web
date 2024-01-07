@@ -75,6 +75,7 @@ axios.interceptors.response.use(
     function (response) {
         let data = JSON.parse(JSON.stringify(response.data.data))
         // console.log(response.config.url, data)
+
         endLoading()
         if (!response.data.status) {
             Vue.prototype.$message.error(response.data.message)
