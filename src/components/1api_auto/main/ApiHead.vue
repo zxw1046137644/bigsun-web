@@ -24,19 +24,26 @@
         <el-menu-item index="4" @click="$router.push('/api/apiList')">用例列表</el-menu-item>
       </div>
       <div class="select-box">
-        <el-select v-model="value" placeholder="请选择环境" size="medium">
-          <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-          >
-          </el-option>
-        </el-select>
+        <div class="block">
+          <el-cascader
+              v-model="value"
+              :options="options1"
+              :props="{ expandTrigger: 'hover' }"
+              @change="handleChange"></el-cascader>
+        </div>
+<!--        <el-select v-model="value" placeholder="请选择环境" size="medium">-->
+<!--          <el-option-->
+<!--              v-for="item in options"-->
+<!--              :key="item.value"-->
+<!--              :label="item.label"-->
+<!--              :value="item.value"-->
+<!--          >-->
+<!--          </el-option>-->
+<!--        </el-select>-->
       </div>
       <div class="image-box">
         <el-avatar src="https://avatars.githubusercontent.com/u/48079484?v=4"></el-avatar>
-<!--        <el-avatar src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></el-avatar>-->
+        <!--        <el-avatar src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></el-avatar>-->
       </div>
     </el-menu>
   </div>
@@ -57,19 +64,34 @@ export default {
         value: '选项2',
         label: 'prod'
       }],
-      value: ''
+      value: '',
+      options1: [{
+        value: 'project',
+        label: 'project',
+        children: [{
+          value: 'test',
+          label: 'test',
+        }, {
+          value: 'prod',
+          label: 'prod'
+        }]
+      }]
     }
   },
   created() {
     this.value = this.options[0].label
     const time1 = setInterval(() => {
       console.log('定时器在执行任务1213321')
-    },1000)
-    this.$once('hook:beforeDestroy', () => { clearInterval(time1); })
+    }, 1000)
+    this.$once('hook:beforeDestroy', () => {
+      clearInterval(time1);
+    })
 
   },
   methods: {
-
+    handleChange(value) {
+      console.log(value);
+    },
     handleSelect(key, keyPath) {
 
       console.log(key, keyPath);
@@ -114,7 +136,7 @@ export default {
   align-content: center;
 
   .select-box {
-    margin-left: auto;
+    //margin-left: auto;
   }
 
   .image-box {
